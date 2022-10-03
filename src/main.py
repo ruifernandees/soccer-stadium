@@ -8,8 +8,8 @@ WINDOW_HEIGHT = 640
 fovY = 75.0
 cameraX, cameraY, cameraZ = 1.0, 1.7, 5.0
 wallX, wallY, wallZ = 0.0, 1.5, 0.0
-# maxCameraX, maxCameraY, maxCameraZ = 1.0, 10000, 10000
-minCameraZ = 5.0
+maxCameraX, maxCameraY, maxCameraZ = 48.0, 10000, 12.0
+minCameraX, minCameraY, minCameraZ = -48.0, 0.0, 1.0
 
 wallRotationY = 95.0
 wallRotationZ = -90.0
@@ -42,18 +42,27 @@ def drawGround():
 def drawSoccerBall():
   SLICES, STACKS = 15, 15
   glEnable(GL_COLOR_MATERIAL)
-  glColor3f(1.0,1.0,1.0)
-  # X, Y, Z = 0.0, 1.5, 0.0
-  # glTranslatef(cameraX + 5, cameraY , cameraZ )
-  glTranslatef(centerX, centerY , centerZ )
-  # glScalef(0.3, 3.0, 4.0)
+  ballColor = [1, 0, 0]
+  glColor3f(ballColor[0], ballColor[1], ballColor[2])
+  glTranslatef(4.0, 4.0, 4.0)
   glutSolidSphere(0.1, SLICES, STACKS)
-
   mat_specular = [0.0, 0.0, 0.0]
   mat_shininess = [0.0]
   glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
   glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
+  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
 
+def drawSky():
+  SLICES, STACKS = 15, 15
+  glEnable(GL_COLOR_MATERIAL)
+  skyBlue = [0.53, 0.81, 0.92]
+  glColor3f(skyBlue[0], skyBlue[1], skyBlue[2])
+  glTranslatef(centerX, centerY, centerZ )
+  glutSolidSphere(50, SLICES, STACKS)
+  mat_specular = [0.0, 0.0, 0.0]
+  mat_shininess = [0.0]
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
+  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
   glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
 
 def display():
@@ -65,7 +74,8 @@ def display():
   gluLookAt(cameraX, cameraY, cameraZ, centerX, centerY, centerZ, 0.0, 1.0, 0.0)
 
   drawGround()
-  # drawSoccerBall()
+  drawSky()
+  drawSoccerBall()
 
   glutSwapBuffers()
 
@@ -83,20 +93,21 @@ def keyCallback(key, x, y):
   global centerX 
   offset = 1.0
   global minCameraZ
-  if (key == b'a'):
-    print("Hello Key A")
+  global maxCameraZ
+  if (key == b'a' and minCameraX < centerX):
     centerX -= offset
+    print("Hello Key A", centerX)
     # cameraY -= offset
-  if (key == b'd'):
-    print("Hello Key D")
+  if (key == b'd' and maxCameraX > centerX):
     centerX += offset
+    print("Hello Key D", centerX)
     # cameraY += offset
-  if (key == b'w'):
-    print("Hello Key W")
+  if (key == b'w' and minCameraZ < cameraZ):
     cameraZ -= offset
-  if (key == b's'):
-    print("Hello Key S")
+    print("Hello Key W", cameraZ)
+  if (key == b's' and maxCameraZ > cameraZ):
     cameraZ += offset
+    print("Hello Key S", cameraZ)
   # if (key == b'e'):
   #   print("Hello Key E")
   #   centerX -= offset
@@ -120,7 +131,7 @@ def main():
   glutInit()
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)
   glutInitWindowPosition(0,500)
-  glutCreateWindow("Wall")
+  glutCreateWindow("Campo de Futebol - CG")
   init()
   glutDisplayFunc(display)
   glutIdleFunc(idleDisplay)

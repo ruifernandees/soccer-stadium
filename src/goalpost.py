@@ -35,7 +35,10 @@ class GoalPost:
     glScalef(goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth)
 
     glEnable(GL_COLOR_MATERIAL)
-    glColor3f(1, 1, 1)
+    if (self.mode == 'first'):
+      glColor3f(0, 0, 1)
+    elif (self.mode == 'second'):
+      glColor3f(1, 0, 0)
     glutSolidCube(1.0)
 
     mat_specular = [0.0, 0.0, 0.0]
@@ -61,7 +64,10 @@ class GoalPost:
     glScalef(goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth)
 
     glEnable(GL_COLOR_MATERIAL)
-    glColor3f(1, 1, 1)
+    if (self.mode == 'first'):
+      glColor3f(0, 0, 1)
+    elif (self.mode == 'second'):
+      glColor3f(1, 0, 0)
     glutSolidCube(1.0)
 
     mat_specular = [0.0, 0.0, 0.0]
@@ -92,7 +98,10 @@ class GoalPost:
     glScalef(goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth)
 
     glEnable(GL_COLOR_MATERIAL)
-    glColor3f(1, 1, 1)
+    if (self.mode == 'first'):
+      glColor3f(0, 0, 1)
+    elif (self.mode == 'second'):
+      glColor3f(1, 0, 0)
     glutSolidCube(1.0)
 
     mat_specular = [0.0, 0.0, 0.0]

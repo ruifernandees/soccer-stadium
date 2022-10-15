@@ -6,6 +6,9 @@ from goalpost import GoalPost
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 800
 
+blueTeamCounter = 0
+redTeamCounter = 0
+
 fovY = 75.0
 # cameraX, cameraY, cameraZ = 2.0, 3.7, -10.0
 cameraX, cameraY, cameraZ = 2.0, 3.7, 7.0
@@ -19,8 +22,15 @@ wallRotationX = 0
 wallWidth, wallHeight, wallDepth = 0.3, 15.0, 8.0
 
 centerX, centerY, centerZ = wallX, wallY, wallZ
-soccerBallX, soccerBallY, soccerBallZ = wallX, wallY + 0.5, wallZ
+initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ = wallX, wallY + 0.5, wallZ
+soccerBallX, soccerBallY, soccerBallZ = initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ
 updateSoccerBallX, updateSoccerBallY, updateSoccerBallZ = 1,1,1
+
+def resetSoccerBallPosition():
+  global soccerBallX 
+  global soccerBallY 
+  global soccerBallZ 
+  soccerBallX, soccerBallY, soccerBallZ = initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ
 
 def init():
   glClearColor(0.0, 0.0, 0.0, 1.0)
@@ -102,37 +112,38 @@ def reshape(w, h):
   pass
 
 def keyCallback(key, x, y):
-  global cameraY 
   global cameraZ 
-  global cameraX 
-  global centerX 
-  global centerY 
-  global centerZ 
   global soccerBallX 
   global soccerBallY 
   global soccerBallZ 
+  global blueTeamCounter 
+  global redTeamCounter 
   offset = 0.2
-  global minCameraZ
-  global maxCameraZ
   if (key == b'a'):
     soccerBallX -= offset
-    print("Hello Key A", soccerBallX)
+    # print("Hello Key A", soccerBallX)
   if (key == b'd'):
     soccerBallX += offset
-    print("Hello Key D", soccerBallX)
+    # print("Hello Key D", soccerBallX)
   if (key == b'w'):
     soccerBallZ -= offset
-    print("Hello Key W", cameraZ)
+    # print("Hello Key W", soccerBallZ)
   if (key == b's'):
     soccerBallZ += offset
-    print("Hello Key S", cameraZ)
+    # print("Hello Key S", soccerBallZ)
   if (key == b'e'):
-    print("Hello Key E")
+    # print("Hello Key E")
     cameraZ -= offset
   if (key == b'q'):
     cameraZ += offset
-    print("Hello Key Q")
-  print (cameraZ)
+    # print("Hello Key Q")
+  # print (cameraZ)
+  blueTeamGoal = -6.4
+
+  if (soccerBallZ <= blueTeamGoal):
+    blueTeamCounter += 1
+    gameStatus()
+    resetSoccerBallPosition()
     
   glutPostRedisplay()
 
@@ -145,6 +156,11 @@ def configureLight():
 	
 	glEnable(GL_LIGHTING)
 	glEnable(GL_LIGHT0)
+
+def gameStatus():
+  print("PLACAR: ")
+  print("AZUL: ", blueTeamCounter)
+  print("VERMELHO: ", redTeamCounter)
 
 
 def main():
@@ -163,6 +179,7 @@ def main():
   gluPerspective(fovY, 1.0 * WINDOW_WIDTH / WINDOW_HEIGHT, 0.001, 1000.0)
   glutKeyboardFunc(keyCallback)
   configureLight()
+  gameStatus()
   glutMainLoop()
   
 

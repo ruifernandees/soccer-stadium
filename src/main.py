@@ -6,7 +6,7 @@ WINDOW_WIDTH = 640
 WINDOW_HEIGHT = 640
 
 fovY = 75.0
-cameraX, cameraY, cameraZ = 1.0, 1.7, 5.0
+cameraX, cameraY, cameraZ = 2.0, 2.7, 5.0
 wallX, wallY, wallZ = 0.0, 1.5, 0.0
 maxCameraX, maxCameraY, maxCameraZ = 48.0, 10000, 12.0
 minCameraX, minCameraY, minCameraZ = -48.0, 0.0, 1.0
@@ -14,14 +14,17 @@ minCameraX, minCameraY, minCameraZ = -48.0, 0.0, 1.0
 wallRotationY = 95.0
 wallRotationZ = -90.0
 wallRotationX = 0
-wallWidth, wallHeight, wallDepth = 0.3, 20.0, 20.0
+wallWidth, wallHeight, wallDepth = 0.3, 5.0, 5.0
 
 centerX, centerY, centerZ = wallX, wallY, wallZ
+soccerBallX, soccerBallY, soccerBallZ = wallX, wallY, wallZ
+updateSoccerBallX, updateSoccerBallY, updateSoccerBallZ = 1,1,1
 
 def init():
   glClearColor(0.0, 0.0, 0.0, 1.0)
 
 def drawGround():
+  # glPushMatrix()
   glTranslatef(wallX, wallY, wallZ)
   glRotatef(wallRotationY, 0.0, 1.0, 0.0)
   glRotatef(wallRotationZ, 0.0, 0.0, 1.0)
@@ -38,32 +41,38 @@ def drawGround():
   glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
 
   glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
+  # glPopMatrix()
 
 def drawSoccerBall():
+  glPushMatrix()
   SLICES, STACKS = 15, 15
   glEnable(GL_COLOR_MATERIAL)
-  ballColor = [1, 0, 0]
+  ballColor = [1, 1, 1]
   glColor3f(ballColor[0], ballColor[1], ballColor[2])
-  glTranslatef(4.0, 4.0, 4.0)
+  # glTranslatef(updateSoccerBallX * (centerX+0.5), updateSoccerBallY * (centerY+0.5), updateSoccerBallZ * centerZ)
+  glTranslatef( (soccerBallX+0.5),  (soccerBallY+0.5),  soccerBallZ)
   glutSolidSphere(0.1, SLICES, STACKS)
   mat_specular = [0.0, 0.0, 0.0]
   mat_shininess = [0.0]
   glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
   glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
   glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
+  glPopMatrix()
 
 def drawSky():
+  # glPushMatrix()
   SLICES, STACKS = 15, 15
   glEnable(GL_COLOR_MATERIAL)
   skyBlue = [0.53, 0.81, 0.92]
   glColor3f(skyBlue[0], skyBlue[1], skyBlue[2])
-  glTranslatef(centerX, centerY, centerZ )
+  glTranslatef(0, 0, 0 )
   glutSolidSphere(50, SLICES, STACKS)
   mat_specular = [0.0, 0.0, 0.0]
   mat_shininess = [0.0]
   glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
   glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
   glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
+  # glPopMatrix()
 
 def display():
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
@@ -73,9 +82,9 @@ def display():
 
   gluLookAt(cameraX, cameraY, cameraZ, centerX, centerY, centerZ, 0.0, 1.0, 0.0)
 
-  drawGround()
-  drawSky()
   drawSoccerBall()
+  drawGround() 
+  drawSky()
 
   glutSwapBuffers()
 
@@ -91,27 +100,31 @@ def keyCallback(key, x, y):
   global cameraZ 
   global cameraX 
   global centerX 
-  offset = 1.0
+  global centerY 
+  global centerZ 
+  global soccerBallX 
+  global soccerBallY 
+  global soccerBallZ 
+  offset = 0.2
   global minCameraZ
   global maxCameraZ
-  if (key == b'a' and minCameraX < centerX):
-    centerX -= offset
-    print("Hello Key A", centerX)
-    # cameraY -= offset
-  if (key == b'd' and maxCameraX > centerX):
-    centerX += offset
-    print("Hello Key D", centerX)
-    # cameraY += offset
+  if (key == b'a' and minCameraX < soccerBallX):
+    soccerBallX -= offset
+    print("Hello Key A", soccerBallX)
+  if (key == b'd' and maxCameraX > soccerBallX):
+    soccerBallX += offset
+    print("Hello Key D", soccerBallX)
   if (key == b'w' and minCameraZ < cameraZ):
-    cameraZ -= offset
+    soccerBallZ -= offset
     print("Hello Key W", cameraZ)
   if (key == b's' and maxCameraZ > cameraZ):
-    cameraZ += offset
+    soccerBallZ += offset
     print("Hello Key S", cameraZ)
   # if (key == b'e'):
   #   print("Hello Key E")
-  #   centerX -= offset
+  #   cameraZ -= offset
   # if (key == b'q'):
+  #   cameraZ += offset
   #   print("Hello Key Q")
     
   glutPostRedisplay()
@@ -128,6 +141,7 @@ def configureLight():
 
 
 def main():
+  print('PID: ',os.getpid())
   glutInit()
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)
   glutInitWindowPosition(0,500)
@@ -142,6 +156,7 @@ def main():
   glutKeyboardFunc(keyCallback)
   configureLight()
   glutMainLoop()
+  
 
 if __name__ == "__main__":
     main()

@@ -6,7 +6,7 @@ WINDOW_WIDTH = 640
 WINDOW_HEIGHT = 640
 
 fovY = 75.0
-cameraX, cameraY, cameraZ = 2.0, 2.7, 5.0
+cameraX, cameraY, cameraZ = 2.0, 3.7, 7.0
 wallX, wallY, wallZ = 0.0, 1.5, 0.0
 maxCameraX, maxCameraY, maxCameraZ = 48.0, 10000, 12.0
 minCameraX, minCameraY, minCameraZ = -48.0, 0.0, 1.0
@@ -14,7 +14,7 @@ minCameraX, minCameraY, minCameraZ = -48.0, 0.0, 1.0
 wallRotationY = 95.0
 wallRotationZ = -90.0
 wallRotationX = 0
-wallWidth, wallHeight, wallDepth = 0.3, 5.0, 5.0
+wallWidth, wallHeight, wallDepth = 0.3, 8.0, 8.0
 
 centerX, centerY, centerZ = wallX, wallY, wallZ
 soccerBallX, soccerBallY, soccerBallZ = wallX, wallY + 0.5, wallZ
@@ -59,6 +59,28 @@ def drawSoccerBall():
   glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
   glPopMatrix()
 
+
+def drawGoalPost():
+    # glPushMatrix()
+  glTranslatef(wallX, wallY, wallZ)
+  glRotatef(wallRotationY, 0.0, 1.0, 0.0)
+  glRotatef(wallRotationZ, 0.0, 0.0, 1.0)
+  glRotatef(wallRotationX, 1.0, 0.0, 0.0)
+  glScalef(wallWidth, wallHeight, wallDepth)
+
+  glEnable(GL_COLOR_MATERIAL)
+  glColor3f(0.0, 0.5, 0.2)
+  glutSolidCube(1.0)
+
+  mat_specular = [0.0, 0.0, 0.0]
+  mat_shininess = [0.0]
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
+  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
+
+  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
+  # glPopMatrix()
+
+
 def drawSky():
   # glPushMatrix()
   SLICES, STACKS = 15, 15
@@ -73,6 +95,7 @@ def drawSky():
   glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
   glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
   # glPopMatrix()
+
 
 def display():
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
@@ -120,12 +143,12 @@ def keyCallback(key, x, y):
   if (key == b's' and maxCameraZ > cameraZ):
     soccerBallZ += offset
     print("Hello Key S", cameraZ)
-  # if (key == b'e'):
-  #   print("Hello Key E")
-  #   cameraZ -= offset
-  # if (key == b'q'):
-  #   cameraZ += offset
-  #   print("Hello Key Q")
+  if (key == b'e'):
+    print("Hello Key E")
+    cameraZ -= offset
+  if (key == b'q'):
+    cameraZ += offset
+    print("Hello Key Q")
     
   glutPostRedisplay()
 

@@ -10,6 +10,8 @@ goalPostRotationX = 0
 
 goalPostDepthFirst = -6
 goalPostDepthSecond = 6
+blueTeamColor = [0,0,1]
+redTeamColor = [1,0,0]
 
 class GoalPost:
   def __init__(self, mode):
@@ -36,9 +38,9 @@ class GoalPost:
 
     glEnable(GL_COLOR_MATERIAL)
     if (self.mode == 'first'):
-      glColor3f(0, 0, 1)
+      glColor3f(blueTeamColor[0], blueTeamColor[1], blueTeamColor[2])
     elif (self.mode == 'second'):
-      glColor3f(1, 0, 0)
+      glColor3f(redTeamColor[0], redTeamColor[1], redTeamColor[2])
     glutSolidCube(1.0)
 
     mat_specular = [0.0, 0.0, 0.0]
@@ -65,9 +67,9 @@ class GoalPost:
 
     glEnable(GL_COLOR_MATERIAL)
     if (self.mode == 'first'):
-      glColor3f(0, 0, 1)
+      glColor3f(blueTeamColor[0], blueTeamColor[1], blueTeamColor[2])
     elif (self.mode == 'second'):
-      glColor3f(1, 0, 0)
+      glColor3f(redTeamColor[0], redTeamColor[1], redTeamColor[2])
     glutSolidCube(1.0)
 
     mat_specular = [0.0, 0.0, 0.0]
@@ -99,9 +101,9 @@ class GoalPost:
 
     glEnable(GL_COLOR_MATERIAL)
     if (self.mode == 'first'):
-      glColor3f(0, 0, 1)
+      glColor3f(blueTeamColor[0], blueTeamColor[1], blueTeamColor[2])
     elif (self.mode == 'second'):
-      glColor3f(1, 0, 0)
+      glColor3f(redTeamColor[0], redTeamColor[1], redTeamColor[2])
     glutSolidCube(1.0)
 
     mat_specular = [0.0, 0.0, 0.0]

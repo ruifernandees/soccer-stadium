@@ -17,7 +17,7 @@ wallRotationX = 0
 wallWidth, wallHeight, wallDepth = 0.3, 5.0, 5.0
 
 centerX, centerY, centerZ = wallX, wallY, wallZ
-soccerBallX, soccerBallY, soccerBallZ = wallX, wallY, wallZ
+soccerBallX, soccerBallY, soccerBallZ = wallX, wallY + 0.5, wallZ
 updateSoccerBallX, updateSoccerBallY, updateSoccerBallZ = 1,1,1
 
 def init():
@@ -50,7 +50,7 @@ def drawSoccerBall():
   ballColor = [1, 1, 1]
   glColor3f(ballColor[0], ballColor[1], ballColor[2])
   # glTranslatef(updateSoccerBallX * (centerX+0.5), updateSoccerBallY * (centerY+0.5), updateSoccerBallZ * centerZ)
-  glTranslatef( (soccerBallX+0.5),  (soccerBallY+0.5),  soccerBallZ)
+  glTranslatef( (soccerBallX),  (soccerBallY),  soccerBallZ)
   glutSolidSphere(0.1, SLICES, STACKS)
   mat_specular = [0.0, 0.0, 0.0]
   mat_shininess = [0.0]

@@ -26,9 +26,9 @@ class GoalPost:
     glPushMatrix()
     # TOCO 1
     goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 2.5, 0.1, 0.1
-    if (self.mode == 'first'):
+    if (self.mode == 'blue'):
       goalPostX, goalPostY, goalPostZ = -1, 1.5, goalPostDepthFirst
-    elif (self.mode == 'second'):
+    elif (self.mode == 'red'):
       goalPostX, goalPostY, goalPostZ = -1, 1.5, goalPostDepthSecond
     glTranslatef(goalPostX, goalPostY, goalPostZ)
     glRotatef(10.0, 0.0, 1.0, 0.0)
@@ -37,9 +37,9 @@ class GoalPost:
     glScalef(goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth)
 
     glEnable(GL_COLOR_MATERIAL)
-    if (self.mode == 'first'):
+    if (self.mode == 'blue'):
       glColor3f(blueTeamColor[0], blueTeamColor[1], blueTeamColor[2])
-    elif (self.mode == 'second'):
+    elif (self.mode == 'red'):
       glColor3f(redTeamColor[0], redTeamColor[1], redTeamColor[2])
     glutSolidCube(1.0)
 
@@ -55,9 +55,9 @@ class GoalPost:
     glPushMatrix()
     # TOCO 2
     goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 2.5, 0.1, 0.1
-    if (self.mode == 'first'):
+    if (self.mode == 'blue'):
       goalPostX, goalPostY, goalPostZ = 1, 1.5, goalPostDepthFirst
-    elif (self.mode == 'second'):
+    elif (self.mode == 'red'):
       goalPostX, goalPostY, goalPostZ = 1, 1.5,goalPostDepthSecond
     glTranslatef(goalPostX, goalPostY, goalPostZ)
     glRotatef(10.0, 0.0, 1.0, 0.0)
@@ -66,9 +66,9 @@ class GoalPost:
     glScalef(goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth)
 
     glEnable(GL_COLOR_MATERIAL)
-    if (self.mode == 'first'):
+    if (self.mode == 'blue'):
       glColor3f(blueTeamColor[0], blueTeamColor[1], blueTeamColor[2])
-    elif (self.mode == 'second'):
+    elif (self.mode == 'red'):
       glColor3f(redTeamColor[0], redTeamColor[1], redTeamColor[2])
     glutSolidCube(1.0)
 
@@ -83,12 +83,12 @@ class GoalPost:
   def drawGoalPostHorizontal(self):
     glPushMatrix()
     goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 0.1, 2.2, 0.1
-    if (self.mode == 'first'):
+    if (self.mode == 'blue'):
       goalPostX, goalPostY, goalPostZ = 0, 2.75, goalPostDepthFirst
       goalPostRotationY = 10.0
       goalPostRotationZ = -90.0
       goalPostRotationX = 10
-    elif (self.mode == 'second'):
+    elif (self.mode == 'red'):
       goalPostX, goalPostY, goalPostZ = 0, 2.75,goalPostDepthSecond
       goalPostRotationY = 10.0
       goalPostRotationZ = -90.0
@@ -100,9 +100,9 @@ class GoalPost:
     glScalef(goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth)
 
     glEnable(GL_COLOR_MATERIAL)
-    if (self.mode == 'first'):
+    if (self.mode == 'blue'):
       glColor3f(blueTeamColor[0], blueTeamColor[1], blueTeamColor[2])
-    elif (self.mode == 'second'):
+    elif (self.mode == 'red'):
       glColor3f(redTeamColor[0], redTeamColor[1], redTeamColor[2])
     glutSolidCube(1.0)
 

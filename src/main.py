@@ -85,9 +85,9 @@ def display():
 
   gluLookAt(cameraX, cameraY, cameraZ, centerX, centerY, centerZ, 0.0, 1.0, 0.0)
   drawSoccerBall()
-  gp1 = GoalPost('first')
+  gp1 = GoalPost('blue')
   gp1.draw()
-  gp2 = GoalPost('second')
+  gp2 = GoalPost('red')
   gp2.draw()
   drawGround() 
   drawSky()

@@ -25,6 +25,7 @@ wallWidth, wallHeight, wallDepth = 0.3, 15.0, 8.0
 
 centerX, centerY, centerZ = wallX, wallY, wallZ
 initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ = wallX, wallY + 0.5, wallZ
+soccerBallRotationX, soccerBallRotationY, soccerBallRotationZ = 0,0,0
 soccerBallX, soccerBallY, soccerBallZ = initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ
 updateSoccerBallX, updateSoccerBallY, updateSoccerBallZ = 1,1,1
 
@@ -85,7 +86,13 @@ def drawSoccerBall():
   ballColor = [1, 1, 1]
   glColor3f(ballColor[0], ballColor[1], ballColor[2])
   glTranslatef(soccerBallX, soccerBallY, soccerBallZ)
+  glRotatef(soccerBallRotationY, 0.0, 1.0, 0.0)
+  glRotatef(soccerBallRotationZ, 0.0, 0.0, 1.0)
+  glRotatef(soccerBallRotationX, 1.0, 0.0, 0.0)
+  glutWireSphere(0.1, SLICES, STACKS)
   glutSolidSphere(0.1, SLICES, STACKS)
+  glColor3f(0, 0, 0)
+  glutSolidCube(0.125)
   mat_specular = [0.0, 0.0, 0.0]
   mat_shininess = [0.0]
   glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
@@ -140,20 +147,28 @@ def keyCallback(key, x, y):
   global soccerBallX 
   global soccerBallY 
   global soccerBallZ 
+  global soccerBallRotationX 
+  global soccerBallRotationY 
+  global soccerBallRotationZ 
   global blueTeamCounter 
   global redTeamCounter 
   offset = 0.2
+  rotationOffset = 20
   if (key == b'a'):
     soccerBallX -= offset
+    soccerBallRotationZ -= rotationOffset
     # print("Hello Key A", soccerBallX)
   if (key == b'd'):
     soccerBallX += offset
+    soccerBallRotationZ += rotationOffset
     # print("Hello Key D", soccerBallX)
   if (key == b'w'):
     soccerBallZ -= offset
+    soccerBallRotationX -= rotationOffset
     # print("Hello Key W", soccerBallZ)
   if (key == b's'):
     soccerBallZ += offset
+    soccerBallRotationX += rotationOffset
     # print("Hello Key S", soccerBallZ)
   if (key == b'e'):
     # print("Hello Key E")

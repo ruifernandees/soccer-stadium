@@ -137,11 +137,16 @@ def keyCallback(key, x, y):
   if (key == b'q'):
     cameraZ += offset
     # print("Hello Key Q")
-  # print (cameraZ)
+
   blueTeamGoal = -6.4
+  redTeamGoal = 6.4
 
   if (soccerBallZ <= blueTeamGoal):
     blueTeamCounter += 1
+    gameStatus()
+    resetSoccerBallPosition()
+  elif (soccerBallZ >= redTeamGoal):
+    redTeamCounter += 1
     gameStatus()
     resetSoccerBallPosition()
     

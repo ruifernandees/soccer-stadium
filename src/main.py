@@ -2,11 +2,12 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
-WINDOW_WIDTH = 640
-WINDOW_HEIGHT = 640
+WINDOW_WIDTH = 800
+WINDOW_HEIGHT = 800
 
 fovY = 75.0
-cameraX, cameraY, cameraZ = 2.0, 3.7, 7.0
+# cameraX, cameraY, cameraZ = 2.0, 3.7, 7.0
+cameraX, cameraY, cameraZ = 2.0, 3.7, -10.0
 wallX, wallY, wallZ = 0.0, 1.5, 0.0
 maxCameraX, maxCameraY, maxCameraZ = 48.0, 10000, 12.0
 minCameraX, minCameraY, minCameraZ = -48.0, 0.0, 1.0
@@ -14,7 +15,7 @@ minCameraX, minCameraY, minCameraZ = -48.0, 0.0, 1.0
 wallRotationY = 95.0
 wallRotationZ = -90.0
 wallRotationX = 0
-wallWidth, wallHeight, wallDepth = 0.3, 8.0, 8.0
+wallWidth, wallHeight, wallDepth = 0.3, 15.0, 8.0
 
 centerX, centerY, centerZ = wallX, wallY, wallZ
 soccerBallX, soccerBallY, soccerBallZ = wallX, wallY + 0.5, wallZ
@@ -49,8 +50,7 @@ def drawSoccerBall():
   glEnable(GL_COLOR_MATERIAL)
   ballColor = [1, 1, 1]
   glColor3f(ballColor[0], ballColor[1], ballColor[2])
-  # glTranslatef(updateSoccerBallX * (centerX+0.5), updateSoccerBallY * (centerY+0.5), updateSoccerBallZ * centerZ)
-  glTranslatef( (soccerBallX),  (soccerBallY),  soccerBallZ)
+  glTranslatef(soccerBallX, soccerBallY, soccerBallZ)
   glutSolidSphere(0.1, SLICES, STACKS)
   mat_specular = [0.0, 0.0, 0.0]
   mat_shininess = [0.0]
@@ -61,15 +61,17 @@ def drawSoccerBall():
 
 
 def drawGoalPost():
-    # glPushMatrix()
-  glTranslatef(wallX, wallY, wallZ)
-  glRotatef(wallRotationY, 0.0, 1.0, 0.0)
+  glPushMatrix()
+  # TOCO 1
+  goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 2.5, 0.1, 0.1
+  glTranslatef(wallX-1, wallY, wallZ-6)
+  glRotatef(10.0, 0.0, 1.0, 0.0)
   glRotatef(wallRotationZ, 0.0, 0.0, 1.0)
   glRotatef(wallRotationX, 1.0, 0.0, 0.0)
-  glScalef(wallWidth, wallHeight, wallDepth)
+  glScalef(goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth)
 
   glEnable(GL_COLOR_MATERIAL)
-  glColor3f(0.0, 0.5, 0.2)
+  glColor3f(1, 1, 1)
   glutSolidCube(1.0)
 
   mat_specular = [0.0, 0.0, 0.0]
@@ -78,7 +80,55 @@ def drawGoalPost():
   glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
 
   glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
-  # glPopMatrix()
+  glPopMatrix()
+
+def drawGoalPostVerticalRight():
+  glPushMatrix()
+  # TOCO 2
+  goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 2.5, 0.1, 0.1
+  glTranslatef(wallX+1, wallY, wallZ-6)
+  glRotatef(10.0, 0.0, 1.0, 0.0)
+  glRotatef(wallRotationZ, 0.0, 0.0, 1.0)
+  glRotatef(wallRotationX, 1.0, 0.0, 0.0)
+  glScalef(goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth)
+
+  glEnable(GL_COLOR_MATERIAL)
+  glColor3f(1, 1, 1)
+  glutSolidCube(1.0)
+
+  mat_specular = [0.0, 0.0, 0.0]
+  mat_shininess = [0.0]
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
+  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
+
+  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
+  glPopMatrix()
+
+def drawGoalPostHorizontal():
+  glPushMatrix()
+  # TOCO 3
+  # goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 2.5, 0.1, 0.1
+  goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 0.1, 2.2, 0.1
+  goalPostRotationY = 10.0
+  goalPostRotationZ = -90.0
+  goalPostRotationX = 10
+  glTranslatef(wallX, wallY+1.25, wallZ-6)
+  glRotatef(goalPostRotationY, 0.0, 1.0, 0.0)
+  glRotatef(goalPostRotationZ, 0.0, 0.0, 1.0)
+  glRotatef(goalPostRotationX, 1.0, 0.0, 0.0)
+  glScalef(goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth)
+
+  glEnable(GL_COLOR_MATERIAL)
+  glColor3f(1, 1, 1)
+  glutSolidCube(1.0)
+
+  mat_specular = [0.0, 0.0, 0.0]
+  mat_shininess = [0.0]
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
+  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
+
+  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
+  glPopMatrix()
 
 
 def drawSky():
@@ -106,6 +156,9 @@ def display():
   gluLookAt(cameraX, cameraY, cameraZ, centerX, centerY, centerZ, 0.0, 1.0, 0.0)
 
   drawSoccerBall()
+  drawGoalPost()
+  drawGoalPostVerticalRight()
+  drawGoalPostHorizontal()
   drawGround() 
   drawSky()
 
@@ -149,6 +202,7 @@ def keyCallback(key, x, y):
   if (key == b'q'):
     cameraZ += offset
     print("Hello Key Q")
+  print (cameraZ)
     
   glutPostRedisplay()
 
@@ -168,6 +222,7 @@ def main():
   glutInit()
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)
   glutInitWindowPosition(0,500)
+  glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT)
   glutCreateWindow("Campo de Futebol - CG")
   init()
   glutDisplayFunc(display)

@@ -1,13 +1,14 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
+from goalpost import GoalPost
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 800
 
 fovY = 75.0
-# cameraX, cameraY, cameraZ = 2.0, 3.7, 7.0
-cameraX, cameraY, cameraZ = 2.0, 3.7, -10.0
+# cameraX, cameraY, cameraZ = 2.0, 3.7, -10.0
+cameraX, cameraY, cameraZ = 2.0, 3.7, 7.0
 wallX, wallY, wallZ = 0.0, 1.5, 0.0
 maxCameraX, maxCameraY, maxCameraZ = 48.0, 10000, 12.0
 minCameraX, minCameraY, minCameraZ = -48.0, 0.0, 1.0
@@ -60,77 +61,6 @@ def drawSoccerBall():
   glPopMatrix()
 
 
-def drawGoalPost():
-  glPushMatrix()
-  # TOCO 1
-  goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 2.5, 0.1, 0.1
-  glTranslatef(wallX-1, wallY, wallZ-6)
-  glRotatef(10.0, 0.0, 1.0, 0.0)
-  glRotatef(wallRotationZ, 0.0, 0.0, 1.0)
-  glRotatef(wallRotationX, 1.0, 0.0, 0.0)
-  glScalef(goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth)
-
-  glEnable(GL_COLOR_MATERIAL)
-  glColor3f(1, 1, 1)
-  glutSolidCube(1.0)
-
-  mat_specular = [0.0, 0.0, 0.0]
-  mat_shininess = [0.0]
-  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
-  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
-
-  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
-  glPopMatrix()
-
-def drawGoalPostVerticalRight():
-  glPushMatrix()
-  # TOCO 2
-  goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 2.5, 0.1, 0.1
-  glTranslatef(wallX+1, wallY, wallZ-6)
-  glRotatef(10.0, 0.0, 1.0, 0.0)
-  glRotatef(wallRotationZ, 0.0, 0.0, 1.0)
-  glRotatef(wallRotationX, 1.0, 0.0, 0.0)
-  glScalef(goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth)
-
-  glEnable(GL_COLOR_MATERIAL)
-  glColor3f(1, 1, 1)
-  glutSolidCube(1.0)
-
-  mat_specular = [0.0, 0.0, 0.0]
-  mat_shininess = [0.0]
-  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
-  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
-
-  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
-  glPopMatrix()
-
-def drawGoalPostHorizontal():
-  glPushMatrix()
-  # TOCO 3
-  # goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 2.5, 0.1, 0.1
-  goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 0.1, 2.2, 0.1
-  goalPostRotationY = 10.0
-  goalPostRotationZ = -90.0
-  goalPostRotationX = 10
-  glTranslatef(wallX, wallY+1.25, wallZ-6)
-  glRotatef(goalPostRotationY, 0.0, 1.0, 0.0)
-  glRotatef(goalPostRotationZ, 0.0, 0.0, 1.0)
-  glRotatef(goalPostRotationX, 1.0, 0.0, 0.0)
-  glScalef(goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth)
-
-  glEnable(GL_COLOR_MATERIAL)
-  glColor3f(1, 1, 1)
-  glutSolidCube(1.0)
-
-  mat_specular = [0.0, 0.0, 0.0]
-  mat_shininess = [0.0]
-  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
-  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
-
-  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
-  glPopMatrix()
-
-
 def drawSky():
   # glPushMatrix()
   SLICES, STACKS = 15, 15
@@ -154,11 +84,11 @@ def display():
   glLoadIdentity()
 
   gluLookAt(cameraX, cameraY, cameraZ, centerX, centerY, centerZ, 0.0, 1.0, 0.0)
-
   drawSoccerBall()
-  drawGoalPost()
-  drawGoalPostVerticalRight()
-  drawGoalPostHorizontal()
+  gp1 = GoalPost('first')
+  gp1.draw()
+  # gp2 = GoalPost('second')
+  # gp2.draw()
   drawGround() 
   drawSky()
 
@@ -184,16 +114,16 @@ def keyCallback(key, x, y):
   offset = 0.2
   global minCameraZ
   global maxCameraZ
-  if (key == b'a' and minCameraX < soccerBallX):
+  if (key == b'a'):
     soccerBallX -= offset
     print("Hello Key A", soccerBallX)
-  if (key == b'd' and maxCameraX > soccerBallX):
+  if (key == b'd'):
     soccerBallX += offset
     print("Hello Key D", soccerBallX)
-  if (key == b'w' and minCameraZ < cameraZ):
+  if (key == b'w'):
     soccerBallZ -= offset
     print("Hello Key W", cameraZ)
-  if (key == b's' and maxCameraZ > cameraZ):
+  if (key == b's'):
     soccerBallZ += offset
     print("Hello Key S", cameraZ)
   if (key == b'e'):

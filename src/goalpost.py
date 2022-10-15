@@ -8,6 +8,9 @@ goalPostRotationY = 95.0
 goalPostRotationZ = -90.0
 goalPostRotationX = 0
 
+goalPostDepthFirst = -6
+goalPostDepthSecond = 6
+
 class GoalPost:
   def __init__(self, mode):
     self.mode = mode 
@@ -22,9 +25,9 @@ class GoalPost:
     # TOCO 1
     goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 2.5, 0.1, 0.1
     if (self.mode == 'first'):
-      goalPostX, goalPostY, goalPostZ = -1, 1.5, -6
+      goalPostX, goalPostY, goalPostZ = -1, 1.5, goalPostDepthFirst
     elif (self.mode == 'second'):
-      goalPostX, goalPostY, goalPostZ = 0.0, 1.5, 0.0
+      goalPostX, goalPostY, goalPostZ = -1, 1.5, goalPostDepthSecond
     glTranslatef(goalPostX, goalPostY, goalPostZ)
     glRotatef(10.0, 0.0, 1.0, 0.0)
     glRotatef(goalPostRotationZ, 0.0, 0.0, 1.0)
@@ -48,9 +51,9 @@ class GoalPost:
     # TOCO 2
     goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 2.5, 0.1, 0.1
     if (self.mode == 'first'):
-      goalPostX, goalPostY, goalPostZ = 1, 1.5, -6
+      goalPostX, goalPostY, goalPostZ = 1, 1.5, goalPostDepthFirst
     elif (self.mode == 'second'):
-      goalPostX, goalPostY, goalPostZ = 0.0, 1.5, 0.0
+      goalPostX, goalPostY, goalPostZ = 1, 1.5,goalPostDepthSecond
     glTranslatef(goalPostX, goalPostY, goalPostZ)
     glRotatef(10.0, 0.0, 1.0, 0.0)
     glRotatef(goalPostRotationZ, 0.0, 0.0, 1.0)
@@ -73,11 +76,12 @@ class GoalPost:
     glPushMatrix()
     goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 0.1, 2.2, 0.1
     if (self.mode == 'first'):
-      goalPostX, goalPostY, goalPostZ = 0, 2.75, -6
+      goalPostX, goalPostY, goalPostZ = 0, 2.75, goalPostDepthFirst
       goalPostRotationY = 10.0
       goalPostRotationZ = -90.0
       goalPostRotationX = 10
     elif (self.mode == 'second'):
+      goalPostX, goalPostY, goalPostZ = 0, 2.75,goalPostDepthSecond
       goalPostRotationY = 10.0
       goalPostRotationZ = -90.0
       goalPostRotationX = 10

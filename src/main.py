@@ -87,8 +87,8 @@ def display():
   drawSoccerBall()
   gp1 = GoalPost('first')
   gp1.draw()
-  # gp2 = GoalPost('second')
-  # gp2.draw()
+  gp2 = GoalPost('second')
+  gp2.draw()
   drawGround() 
   drawSky()
 

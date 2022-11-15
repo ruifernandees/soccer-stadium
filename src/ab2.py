@@ -23,7 +23,7 @@ wallRotationX = 0
 wallWidth, wallHeight, wallDepth = 4.5, 2.0, 10.5
 
 centerX, centerY, centerZ = wallX, wallY, wallZ
-initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ = 1.5, 2.2, 5.0
+initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ = 1.6, 2.1, 5.20
 soccerBallRotationX, soccerBallRotationY, soccerBallRotationZ = 0,0,0
 soccerBallX, soccerBallY, soccerBallZ = initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ
 updateSoccerBallX, updateSoccerBallY, updateSoccerBallZ = 1,1,1

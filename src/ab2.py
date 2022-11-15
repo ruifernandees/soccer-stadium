@@ -128,7 +128,12 @@ def drawSoccerBall():
   glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
   glPopMatrix()
 
-  
+def resetSoccerBallPosition():
+  global soccerBallX 
+  global soccerBallY 
+  global soccerBallZ 
+  soccerBallX, soccerBallY, soccerBallZ = initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ
+ 
 
 def display():
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)

@@ -8,8 +8,8 @@ goalPostRotationY = 95.0
 goalPostRotationZ = -90.0
 goalPostRotationX = 0
 
-goalPostDepthFirst = -6
-goalPostDepthSecond = 6
+goalPostDepthFirst = 0.1
+goalPostDepthSecond = 10.1
 blueTeamColor = [0,0,1]
 redTeamColor = [1,0,0]
 
@@ -27,9 +27,9 @@ class GoalPost:
     # TOCO 1
     goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 2.5, 0.1, 0.1
     if (self.mode == 'blue'):
-      goalPostX, goalPostY, goalPostZ = -1, 1.5, goalPostDepthFirst
+      goalPostX, goalPostY, goalPostZ = 1.0, 1.5, goalPostDepthFirst
     elif (self.mode == 'red'):
-      goalPostX, goalPostY, goalPostZ = -1, 1.5, goalPostDepthSecond
+      goalPostX, goalPostY, goalPostZ = 1.0, 1.5, goalPostDepthSecond
     glTranslatef(goalPostX, goalPostY, goalPostZ)
     glRotatef(10.0, 0.0, 1.0, 0.0)
     glRotatef(goalPostRotationZ, 0.0, 0.0, 1.0)
@@ -56,9 +56,9 @@ class GoalPost:
     # TOCO 2
     goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 2.5, 0.1, 0.1
     if (self.mode == 'blue'):
-      goalPostX, goalPostY, goalPostZ = 1, 1.5, goalPostDepthFirst
+      goalPostX, goalPostY, goalPostZ = 2.25, 1.5, goalPostDepthFirst
     elif (self.mode == 'red'):
-      goalPostX, goalPostY, goalPostZ = 1, 1.5,goalPostDepthSecond
+      goalPostX, goalPostY, goalPostZ = 2.25, 1.5,goalPostDepthSecond
     glTranslatef(goalPostX, goalPostY, goalPostZ)
     glRotatef(10.0, 0.0, 1.0, 0.0)
     glRotatef(goalPostRotationZ, 0.0, 0.0, 1.0)
@@ -82,14 +82,14 @@ class GoalPost:
 
   def drawGoalPostHorizontal(self):
     glPushMatrix()
-    goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 0.1, 2.2, 0.1
+    goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 0.1, 1.35, 0.1
     if (self.mode == 'blue'):
-      goalPostX, goalPostY, goalPostZ = 0, 2.75, goalPostDepthFirst
+      goalPostX, goalPostY, goalPostZ = 1.63, 2.75, goalPostDepthFirst
       goalPostRotationY = 10.0
       goalPostRotationZ = -90.0
       goalPostRotationX = 10
     elif (self.mode == 'red'):
-      goalPostX, goalPostY, goalPostZ = 0, 2.75,goalPostDepthSecond
+      goalPostX, goalPostY, goalPostZ = 1.63, 2.75,goalPostDepthSecond
       goalPostRotationY = 10.0
       goalPostRotationZ = -90.0
       goalPostRotationX = 10

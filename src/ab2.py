@@ -12,19 +12,18 @@ blueTeamCounter = 0
 redTeamCounter = 0
 
 fovY = 75.0
-# cameraX, cameraY, cameraZ = 2.0, 3.7, -10.0
 cameraX, cameraY, cameraZ = 2.0, 3.7, 7.0
-wallX, wallY, wallZ = 0.0, 1, 0.0
+wallX, wallY, wallZ = 0.0, 2.0, 0.0
 maxCameraX, maxCameraY, maxCameraZ = 48.0, 10000, 12.0
 minCameraX, minCameraY, minCameraZ = -48.0, 0.0, 1.0
 
 wallRotationY = 95.0
 wallRotationZ = -90.0
 wallRotationX = 0
-wallWidth, wallHeight, wallDepth = 1, 15.0, 8.0
+wallWidth, wallHeight, wallDepth = 4.5, 2.0, 10.5
 
 centerX, centerY, centerZ = wallX, wallY, wallZ
-initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ = wallX, wallY + 0.8, wallZ
+initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ = 1.5, 2.2, 5.0
 soccerBallRotationX, soccerBallRotationY, soccerBallRotationZ = 0,0,0
 soccerBallX, soccerBallY, soccerBallZ = initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ
 updateSoccerBallX, updateSoccerBallY, updateSoccerBallZ = 1,1,1
@@ -37,7 +36,7 @@ def line(x1, y1, x2, y2, z):
   while x <= x2:
     x+=bresenhamOffset
     y = (y1 + a * (x - x1))
-    print(x,y)
+    # print(x,y)
     glBegin(GL_POINTS)
     glColor3f(1,1,1)
     glVertex3f(x,y,z)
@@ -54,27 +53,11 @@ def lineXtoZ(x1, z1, x2, z2, y):
     glVertex3f(x,y,z)
     glEnd()
 
-# def lineZ(z1, z2, x, y):
-#   # a = (z2-z1)/(x2-x1)
-#   a = 0
-#   z = z1
-#   while z <= z2:
-#     # x+=0.0005
-#     z += bresenhamOffset
-#     x = (0 + a * (z - z1))
-#     glBegin(GL_POINTS)
-#     glColor3f(1,1,1)
-#     glVertex3f(x,y,z)
-#     glEnd()
-
 def init():
   glClearColor(0.0, 0.0, 0.0, 1.0)
 
 def drawGround():
-  glTranslatef(wallX, wallY, wallZ)
-  glRotatef(wallRotationY, 0.0, 1.0, 0.0)
-  glRotatef(wallRotationZ, 0.0, 0.0, 1.0)
-  glRotatef(wallRotationX, 1.0, 0.0, 0.0)
+  glTranslatef(wallWidth/3, wallHeight/2 , (wallDepth/2) )
   glScalef(wallWidth, wallHeight, wallDepth)
 
   glEnable(GL_COLOR_MATERIAL)
@@ -88,12 +71,63 @@ def drawGround():
 
   glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
 
+def drawSky():
+  SLICES, STACKS = 15, 15
+  glEnable(GL_COLOR_MATERIAL)
+  skyBlue = [0.53, 0.81, 0.92]
+  glColor3f(skyBlue[0], skyBlue[1], skyBlue[2])
+  glTranslatef(0, 0, 0)
+  glutSolidSphere(50, SLICES, STACKS)
+  mat_specular = [0.0, 0.0, 0.0]
+  mat_shininess = [0.0]
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
+  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
+  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
+
+
 def drawGroundLines():
-  lineX, lineY, lineZ = 0.0, 1, 0.0
-  line(0.0, 2.0, 3.0, 2.0, 0.0)
-  lineXtoZ(3.0, 0.0, 3.1, 10.0, 2.0)
-  lineXtoZ(0.0, 0.0, 0.1, 10.0, 2.0)
-  line(0.1, 2.0, 3.1, 2.0, 10.0)
+  # lineX, lineY, lineZ = 0.0, 1, 0.0
+  xOffset = 0.1
+  zOffset = 0.1
+
+  #TOP
+  line(0.0 + xOffset, 2.0, 3.0 + xOffset, 2.0, 0.0 + zOffset)
+
+  #RIGHT
+  lineXtoZ(3.0 + xOffset, 0.0 + zOffset, 3.1 + xOffset, 10.0 + zOffset, 2.0)
+
+  #LEFT
+  lineXtoZ(0.0 + xOffset, 0.0 + zOffset, 0.1 + xOffset, 10.0 + zOffset, 2.0)
+
+  # BOTTOM 
+  line(0.1 + xOffset, 2.0, 3.1 + xOffset, 2.0, 10.0 + zOffset)
+
+  # CENTER 
+  line(0.1 + xOffset, 2.0, 3.0 + xOffset, 2.0, 5.0 + zOffset)
+  line(0.1 + xOffset, 2.0, 3.0 + xOffset, 2.0, 5.001 + zOffset)
+  line(0.1 + xOffset, 2.0, 3.0 + xOffset, 2.0, 5.002 + zOffset)
+
+def drawSoccerBall():
+  glPushMatrix()
+  SLICES, STACKS = 15, 15
+  glEnable(GL_COLOR_MATERIAL)
+  ballColor = [1, 1, 1]
+  glColor3f(ballColor[0], ballColor[1], ballColor[2])
+  glTranslatef(soccerBallX, soccerBallY, soccerBallZ)
+  glRotatef(soccerBallRotationY, 0.0, 1.0, 0.0)
+  glRotatef(soccerBallRotationZ, 0.0, 0.0, 1.0)
+  glRotatef(soccerBallRotationX, 1.0, 0.0, 0.0)
+  glutWireSphere(0.015, SLICES, STACKS)
+  glutSolidSphere(0.015, SLICES, STACKS)
+  glColor3f(0, 0, 0)
+  # glutSolidCube(0.035)
+  mat_specular = [0.0, 0.0, 0.0]
+  mat_shininess = [0.0]
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
+  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
+  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
+  glPopMatrix()
+
   
 
 def display():
@@ -103,7 +137,14 @@ def display():
   glLoadIdentity()
 
   gluLookAt(cameraX, cameraY, cameraZ, centerX, centerY, centerZ, 0.0, 1.0, 0.0)
+  drawSoccerBall()
+  gp1 = GoalPost('blue')
+  gp1.draw()
+  gp2 = GoalPost('red')
+  gp2.draw()
   drawGroundLines()
+  drawGround()
+  drawSky()
 
   glutSwapBuffers()
 
@@ -113,6 +154,22 @@ def idleDisplay():
 
 def reshape(w, h):
   pass
+
+def gameStatus():
+  print("PLACAR: ")
+  print("AZUL: ", blueTeamCounter)
+  print("VERMELHO: ", redTeamCounter)
+
+
+def configureLight():
+	light_ambient = [0.2, 0.2, 0.2]
+	light_position = [cameraX, cameraY, cameraZ, 0.0]
+	
+	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position)
+	
+	glEnable(GL_LIGHTING)
+	glEnable(GL_LIGHT0)
 
 def keyCallback(key, x, y):
   global cameraZ 
@@ -124,30 +181,25 @@ def keyCallback(key, x, y):
   global soccerBallRotationZ 
   global blueTeamCounter 
   global redTeamCounter 
-  offset = 0.2
+  offset = 0.1
   rotationOffset = 20
   if (key == b'a'):
     soccerBallX -= offset
     soccerBallRotationZ -= rotationOffset
-    # print("Hello Key A", soccerBallX)
   if (key == b'd'):
     soccerBallX += offset
     soccerBallRotationZ += rotationOffset
-    # print("Hello Key D", soccerBallX)
   if (key == b'w'):
     soccerBallZ -= offset
     soccerBallRotationX -= rotationOffset
-    # print("Hello Key W", soccerBallZ)
   if (key == b's'):
     soccerBallZ += offset
     soccerBallRotationX += rotationOffset
-    # print("Hello Key S", soccerBallZ)
   if (key == b'e'):
-    # print("Hello Key E")
     cameraZ -= offset
   if (key == b'q'):
     cameraZ += offset
-    # print("Hello Key Q")
+  print(soccerBallX, soccerBallY, soccerBallZ)
 
   blueTeamGoal = -6.4
   redTeamGoal = 6.4
@@ -179,6 +231,8 @@ def main():
   glLoadIdentity()
   gluPerspective(fovY, 1.0 * WINDOW_WIDTH / WINDOW_HEIGHT, 0.001, 1000.0)
   glutKeyboardFunc(keyCallback)
+  # configureLight()
+  # gameStatus()
   glutMainLoop()
   
 

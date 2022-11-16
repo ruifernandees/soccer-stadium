@@ -2,11 +2,11 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 from goalpost import GoalPost
-import pygame
-from pygame.locals import *
+
 from drawGroundLines import *
 from dayAndNightLight import *
 from drawSoccerBall import *
+from drawTextStatus import *
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 800
@@ -65,8 +65,6 @@ def drawSky():
   glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
 
 
-
-
 def resetSoccerBallPosition():
   global soccerBallX 
   global soccerBallY 
@@ -82,7 +80,7 @@ def display():
   configureLight()
 
   gluLookAt(cameraX, cameraY, cameraZ, centerX, centerY, centerZ, 0.0, 1.0, 0.0)
-  drawTextStatus()
+  drawTextStatus(blueTeamCounter, redTeamCounter)
   drawSoccerBall(soccerBallX, soccerBallY, soccerBallZ, soccerBallRotationX, soccerBallRotationY, soccerBallRotationZ)
   gp1 = GoalPost('blue')
   gp1.draw()
@@ -101,25 +99,6 @@ def idleDisplay():
 def reshape(w, h):
   pass
 
-def drawTextStatus():
-  blueTeamText = f'TIME AZUL: {blueTeamCounter}'
-
-  redTeamText = f'TIME VERMELHO: {redTeamCounter}'
-
-  pygame.font.init()
-  font = pygame.font.SysFont('arial', 32)
-
-  x, y = 0, 32
-  textSurface = font.render(blueTeamText, True, (255, 255, 66, 255), (0, 66, 0, 255))
-  textData = pygame.image.tostring(textSurface, "RGBA", True)
-  glWindowPos2d(x, y)
-  glDrawPixels(textSurface.get_width(), textSurface.get_height(), GL_RGBA, GL_UNSIGNED_BYTE, textData)
-
-  x, y = 0, 0 
-  textSurface = font.render(redTeamText, True, (255, 255, 66, 255), (0, 66, 0, 255))
-  textData = pygame.image.tostring(textSurface, "RGBA", True)
-  glWindowPos2d(x, y)
-  glDrawPixels(textSurface.get_width(), textSurface.get_height(), GL_RGBA, GL_UNSIGNED_BYTE, textData)
 
 
 def gameStatus():

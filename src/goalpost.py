@@ -25,11 +25,11 @@ class GoalPost:
   def drawGoalPostVerticalLeft(self):
     glPushMatrix()
     # TOCO 1
-    goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 2.5, 0.1, 0.1
+    goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 1.67, 0.03, 0.03
     if (self.mode == 'blue'):
-      goalPostX, goalPostY, goalPostZ = 1.0, 1.5, goalPostDepthFirst
+      goalPostX, goalPostY, goalPostZ = 1.3, 1.5, goalPostDepthFirst
     elif (self.mode == 'red'):
-      goalPostX, goalPostY, goalPostZ = 1.0, 1.5, goalPostDepthSecond
+      goalPostX, goalPostY, goalPostZ = 1.3, 1.5, goalPostDepthSecond
     glTranslatef(goalPostX, goalPostY, goalPostZ)
     glRotatef(10.0, 0.0, 1.0, 0.0)
     glRotatef(goalPostRotationZ, 0.0, 0.0, 1.0)
@@ -54,11 +54,11 @@ class GoalPost:
   def drawGoalPostVerticalRight(self):
     glPushMatrix()
     # TOCO 2
-    goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 2.5, 0.1, 0.1
+    goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 1.65, 0.03, 0.03
     if (self.mode == 'blue'):
-      goalPostX, goalPostY, goalPostZ = 2.25, 1.5, goalPostDepthFirst
+      goalPostX, goalPostY, goalPostZ = 2, 1.5, goalPostDepthFirst
     elif (self.mode == 'red'):
-      goalPostX, goalPostY, goalPostZ = 2.25, 1.5,goalPostDepthSecond
+      goalPostX, goalPostY, goalPostZ = 2, 1.5,goalPostDepthSecond
     glTranslatef(goalPostX, goalPostY, goalPostZ)
     glRotatef(10.0, 0.0, 1.0, 0.0)
     glRotatef(goalPostRotationZ, 0.0, 0.0, 1.0)
@@ -82,14 +82,14 @@ class GoalPost:
 
   def drawGoalPostHorizontal(self):
     glPushMatrix()
-    goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 0.1, 1.35, 0.1
+    goalPostVerticalWidth, goalPostVerticalHeight, goalPostVerticalDepth = 0.03, 0.7, 0.03
     if (self.mode == 'blue'):
-      goalPostX, goalPostY, goalPostZ = 1.63, 2.75, goalPostDepthFirst
+      goalPostX, goalPostY, goalPostZ = 1.66, 2.32, goalPostDepthFirst
       goalPostRotationY = 10.0
       goalPostRotationZ = -90.0
       goalPostRotationX = 10
     elif (self.mode == 'red'):
-      goalPostX, goalPostY, goalPostZ = 1.63, 2.75,goalPostDepthSecond
+      goalPostX, goalPostY, goalPostZ = 1.66, 2.32,goalPostDepthSecond
       goalPostRotationY = 10.0
       goalPostRotationZ = -90.0
       goalPostRotationX = 10

@@ -107,6 +107,17 @@ def drawGroundLines():
   line(0.1 + xOffset, 2.0, 3.0 + xOffset, 2.0, 5.001 + zOffset)
   line(0.1 + xOffset, 2.0, 3.0 + xOffset, 2.0, 5.002 + zOffset)
 
+  # PEQUENA AREA - AZUL
+  lineXtoZ(2.1 + xOffset, 0.0 + zOffset, 2.105 + xOffset, 0.7 + zOffset, 2.0)
+  lineXtoZ(1.0 + xOffset, 0.0 + zOffset, 1.005 + xOffset, 0.7 + zOffset, 2.0)
+  line(1.0 + xOffset, 2.0, 2.1 + xOffset, 2.0, 0.7 + zOffset)
+
+  # GRANDE AREA - AZUL
+  lineXtoZ(2.4 + xOffset, 0.0 + zOffset, 2.405 + xOffset, 1.3 + zOffset, 2.0)
+  lineXtoZ(0.7 + xOffset, 0.0 + zOffset, 0.705 + xOffset, 1.3 + zOffset, 2.0)
+  line(0.7 + xOffset, 2.0, 2.4 + xOffset, 2.0, 1.3 + zOffset)
+
+
 def drawSoccerBall():
   glPushMatrix()
   SLICES, STACKS = 15, 15
@@ -206,8 +217,8 @@ def keyCallback(key, x, y):
     cameraZ += offset
   print(soccerBallX, soccerBallY, soccerBallZ)
 
-  blueTeamGoal = -6.4
-  redTeamGoal = 6.4
+  blueTeamGoal = 0.20000000000000193
+  redTeamGoal = 10.2
 
   if (soccerBallZ <= blueTeamGoal):
     blueTeamCounter += 1
@@ -237,7 +248,7 @@ def main():
   gluPerspective(fovY, 1.0 * WINDOW_WIDTH / WINDOW_HEIGHT, 0.001, 1000.0)
   glutKeyboardFunc(keyCallback)
   # configureLight()
-  # gameStatus()
+  gameStatus()
   glutMainLoop()
   
 

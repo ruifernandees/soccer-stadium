@@ -5,6 +5,7 @@ from goalpost import GoalPost
 import pygame
 from pygame.locals import *
 from bresenham import *
+from bresenhamCircle import *
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 800
@@ -28,6 +29,8 @@ initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ = 1.6, 2.1, 5.20
 soccerBallRotationX, soccerBallRotationY, soccerBallRotationZ = 0,0,0
 soccerBallX, soccerBallY, soccerBallZ = initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ
 updateSoccerBallX, updateSoccerBallY, updateSoccerBallZ = 1,1,1
+
+isDay = True
 
 def init():
   glClearColor(0.0, 0.0, 0.0, 1.0)
@@ -83,8 +86,6 @@ def drawGroundLines():
   line(0.1 + xOffset, 2.0, 3.0 + xOffset, 2.0, 5.001 + zOffset)
   line(0.1 + xOffset, 2.0, 3.0 + xOffset, 2.0, 5.002 + zOffset)
 
-  # CIRCLE CENTER
-  line(0.1 + xOffset, 2.0, 3.0 + xOffset, 2.0, 5.002 + zOffset)
 
   # PEQUENA AREA - AZUL
   lineXtoZ(2.1 + xOffset, 0.0 + zOffset, 2.105 + xOffset, 0.7 + zOffset, 2.0)
@@ -140,6 +141,7 @@ def display():
   glEnable(GL_DEPTH_TEST)
   glMatrixMode(GL_MODELVIEW) 
   glLoadIdentity()
+  configureLight()
 
   gluLookAt(cameraX, cameraY, cameraZ, centerX, centerY, centerZ, 0.0, 1.0, 0.0)
   drawTextStatus()
@@ -189,7 +191,24 @@ def gameStatus():
 
 
 def configureLight():
+  global isDay
+  if (isDay):
+    dayLight()
+  else:
+    nightLight()
+
+def dayLight():
 	light_ambient = [0.7, 0.7, 0.7]
+	light_position = [cameraX, cameraY, cameraZ, 0.0]
+	
+	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position)
+	
+	glEnable(GL_LIGHTING)
+	glEnable(GL_LIGHT0)
+
+def nightLight():
+	light_ambient = [0.0, 0.0, 0.0]
 	light_position = [cameraX, cameraY, cameraZ, 0.0]
 	
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)
@@ -208,6 +227,7 @@ def keyCallback(key, x, y):
   global soccerBallRotationZ 
   global blueTeamCounter 
   global redTeamCounter 
+  global isDay
   offset = 0.1
   rotationOffset = 20
   if (key == b'a'):
@@ -226,6 +246,8 @@ def keyCallback(key, x, y):
     cameraZ -= offset
   if (key == b'q'):
     cameraZ += offset
+  if (key == b'n'):
+    isDay = not isDay
   print(soccerBallX, soccerBallY, soccerBallZ)
   print(cameraX, cameraY, cameraZ)
 
@@ -259,7 +281,7 @@ def main():
   glLoadIdentity()
   gluPerspective(fovY, 1.0 * WINDOW_WIDTH / WINDOW_HEIGHT, 0.001, 1000.0)
   glutKeyboardFunc(keyCallback)
-  configureLight()
+
   
   glutMainLoop()
   

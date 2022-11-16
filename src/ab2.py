@@ -38,16 +38,11 @@ isDay = True
 def init():
   glClearColor(0.0, 0.0, 0.0, 1.0)
 
-
-
-
-
 def resetSoccerBallPosition():
   global soccerBallX 
   global soccerBallY 
   global soccerBallZ 
   soccerBallX, soccerBallY, soccerBallZ = initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ
- 
 
 def display():
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
@@ -64,6 +59,7 @@ def display():
   gp2 = GoalPost('red')
   gp2.draw()
   drawGroundLines()
+  drawGrandStand()
   drawGround(wallWidth, wallHeight, wallDepth)
   drawSky()
 
@@ -80,7 +76,6 @@ def gameStatus():
   print("PLACAR: ")
   print("AZUL: ", blueTeamCounter)
   print("VERMELHO: ", redTeamCounter)
-
 
 def configureLight():
   global cameraX 
@@ -141,6 +136,23 @@ def keyCallback(key, x, y):
     
   glutPostRedisplay()
 
+def drawGrandStand():
+  glPushMatrix()
+  glTranslatef(-5.0, 2.0, 2.0)
+  glScalef(0.5, 4.0, 16.0)
+
+  glEnable(GL_COLOR_MATERIAL)
+  glColor3f(0.4, 0.4, 0.4)
+  glutSolidCube(1.0)
+
+  mat_specular = [0.0, 0.0, 0.0]
+  mat_shininess = [0.0]
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
+  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
+
+  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
+  glPopMatrix()
+
 
 def main():
   print('PID: ',os.getpid())
@@ -158,7 +170,6 @@ def main():
   gluPerspective(fovY, 1.0 * WINDOW_WIDTH / WINDOW_HEIGHT, 0.001, 1000.0)
   glutKeyboardFunc(keyCallback)
 
-  
   glutMainLoop()
   
 

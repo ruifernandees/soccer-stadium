@@ -6,6 +6,7 @@ import pygame
 from pygame.locals import *
 from drawGroundLines import *
 from dayAndNightLight import *
+from drawSoccerBall import *
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 800
@@ -64,26 +65,7 @@ def drawSky():
   glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
 
 
-def drawSoccerBall():
-  glPushMatrix()
-  SLICES, STACKS = 15, 15
-  glEnable(GL_COLOR_MATERIAL)
-  ballColor = [1, 1, 1]
-  glColor3f(ballColor[0], ballColor[1], ballColor[2])
-  glTranslatef(soccerBallX, soccerBallY, soccerBallZ)
-  glRotatef(soccerBallRotationY, 0.0, 1.0, 0.0)
-  glRotatef(soccerBallRotationZ, 0.0, 0.0, 1.0)
-  glRotatef(soccerBallRotationX, 1.0, 0.0, 0.0)
-  glutWireSphere(0.015, SLICES, STACKS)
-  glutSolidSphere(0.015, SLICES, STACKS)
-  glColor3f(0, 0, 0)
-  # glutSolidCube(0.035)
-  mat_specular = [0.0, 0.0, 0.0]
-  mat_shininess = [0.0]
-  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
-  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
-  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
-  glPopMatrix()
+
 
 def resetSoccerBallPosition():
   global soccerBallX 
@@ -101,7 +83,7 @@ def display():
 
   gluLookAt(cameraX, cameraY, cameraZ, centerX, centerY, centerZ, 0.0, 1.0, 0.0)
   drawTextStatus()
-  drawSoccerBall()
+  drawSoccerBall(soccerBallX, soccerBallY, soccerBallZ, soccerBallRotationX, soccerBallRotationY, soccerBallRotationZ)
   gp1 = GoalPost('blue')
   gp1.draw()
   gp2 = GoalPost('red')

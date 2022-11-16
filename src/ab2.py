@@ -12,7 +12,7 @@ blueTeamCounter = 0
 redTeamCounter = 0
 
 fovY = 75.0
-cameraX, cameraY, cameraZ = 2.0, 3.7, 7.0
+cameraX, cameraY, cameraZ = 2.0, 3.7, 12.4
 wallX, wallY, wallZ = 0.0, 2.0, 0.0
 maxCameraX, maxCameraY, maxCameraZ = 48.0, 10000, 12.0
 minCameraX, minCameraY, minCameraZ = -48.0, 0.0, 1.0
@@ -116,6 +116,16 @@ def drawGroundLines():
   lineXtoZ(2.4 + xOffset, 0.0 + zOffset, 2.405 + xOffset, 1.3 + zOffset, 2.0)
   lineXtoZ(0.7 + xOffset, 0.0 + zOffset, 0.705 + xOffset, 1.3 + zOffset, 2.0)
   line(0.7 + xOffset, 2.0, 2.4 + xOffset, 2.0, 1.3 + zOffset)
+
+  # PEQUENA AREA - VERMELHO
+  lineXtoZ(2.1 + xOffset, 9.3 + zOffset, 2.105 + xOffset, 10 + zOffset, 2.0)
+  lineXtoZ(1.0 + xOffset, 9.3 + zOffset, 1.005 + xOffset, 10 + zOffset, 2.0)
+  line(1.0 + xOffset, 2.0, 2.1 + xOffset, 2.0, 9.3 + zOffset)
+
+  # GRANDE AREA - VERMELHO
+  lineXtoZ(2.4 + xOffset, 8.7 + zOffset, 2.405 + xOffset, 10 + zOffset, 2.0)
+  lineXtoZ(0.7 + xOffset, 8.7 + zOffset, 0.705 + xOffset, 10 + zOffset, 2.0)
+  line(0.7 + xOffset, 2.0, 2.4 + xOffset, 2.0, 8.7 + zOffset)
 
 
 def drawSoccerBall():
@@ -238,6 +248,7 @@ def keyCallback(key, x, y):
   if (key == b'q'):
     cameraZ += offset
   print(soccerBallX, soccerBallY, soccerBallZ)
+  print(cameraX, cameraY, cameraZ)
 
   blueTeamGoal = 0.20000000000000193
   redTeamGoal = 10.2

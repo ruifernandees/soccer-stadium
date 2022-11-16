@@ -10,8 +10,8 @@ goalPostRotationX = 0
 
 goalPostDepthFirst = 0.1
 goalPostDepthSecond = 10.1
-blueTeamColor = [0,0,1]
-redTeamColor = [1,0,0]
+blueTeamColor = [1,1,1]
+redTeamColor = [1,1,1]
 
 class GoalPost:
   def __init__(self, mode):

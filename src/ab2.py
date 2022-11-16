@@ -153,6 +153,7 @@ def display():
   glLoadIdentity()
 
   gluLookAt(cameraX, cameraY, cameraZ, centerX, centerY, centerZ, 0.0, 1.0, 0.0)
+  drawTextStatus()
   drawSoccerBall()
   gp1 = GoalPost('blue')
   gp1.draw()
@@ -171,6 +172,27 @@ def idleDisplay():
 def reshape(w, h):
   pass
 
+def drawTextStatus():
+  blueTeamText = f'TIME AZUL: {blueTeamCounter}'
+
+  redTeamText = f'TIME VERMELHO: {redTeamCounter}'
+
+  pygame.font.init()
+  font = pygame.font.SysFont('arial', 32)
+
+  x, y = 0, 32
+  textSurface = font.render(blueTeamText, True, (255, 255, 66, 255), (0, 66, 0, 255))
+  textData = pygame.image.tostring(textSurface, "RGBA", True)
+  glWindowPos2d(x, y)
+  glDrawPixels(textSurface.get_width(), textSurface.get_height(), GL_RGBA, GL_UNSIGNED_BYTE, textData)
+
+  x, y = 0, 0 
+  textSurface = font.render(redTeamText, True, (255, 255, 66, 255), (0, 66, 0, 255))
+  textData = pygame.image.tostring(textSurface, "RGBA", True)
+  glWindowPos2d(x, y)
+  glDrawPixels(textSurface.get_width(), textSurface.get_height(), GL_RGBA, GL_UNSIGNED_BYTE, textData)
+
+
 def gameStatus():
   print("PLACAR: ")
   print("AZUL: ", blueTeamCounter)
@@ -178,7 +200,7 @@ def gameStatus():
 
 
 def configureLight():
-	light_ambient = [0.2, 0.2, 0.2]
+	light_ambient = [0.7, 0.7, 0.7]
 	light_position = [cameraX, cameraY, cameraZ, 0.0]
 	
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)
@@ -247,8 +269,8 @@ def main():
   glLoadIdentity()
   gluPerspective(fovY, 1.0 * WINDOW_WIDTH / WINDOW_HEIGHT, 0.001, 1000.0)
   glutKeyboardFunc(keyCallback)
-  # configureLight()
-  gameStatus()
+  configureLight()
+  
   glutMainLoop()
   
 

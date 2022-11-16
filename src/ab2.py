@@ -5,6 +5,7 @@ from goalpost import GoalPost
 import pygame
 from pygame.locals import *
 from drawGroundLines import *
+from dayAndNightLight import *
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 800
@@ -146,31 +147,15 @@ def gameStatus():
 
 
 def configureLight():
+  global cameraX 
+  global cameraY 
+  global cameraZ 
   global isDay
   if (isDay):
-    dayLight()
+    dayLight(cameraX, cameraY, cameraZ)
   else:
-    nightLight()
+    nightLight(cameraX, cameraY, cameraZ)
 
-def dayLight():
-	light_ambient = [0.7, 0.7, 0.7]
-	light_position = [cameraX, cameraY, cameraZ, 0.0]
-	
-	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position)
-	
-	glEnable(GL_LIGHTING)
-	glEnable(GL_LIGHT0)
-
-def nightLight():
-	light_ambient = [0.0, 0.0, 0.0]
-	light_position = [cameraX, cameraY, cameraZ, 0.0]
-	
-	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position)
-	
-	glEnable(GL_LIGHTING)
-	glEnable(GL_LIGHT0)
 
 def keyCallback(key, x, y):
   global cameraZ 

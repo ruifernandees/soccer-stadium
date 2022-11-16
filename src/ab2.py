@@ -7,6 +7,7 @@ from drawGroundLines import *
 from dayAndNightLight import *
 from drawSoccerBall import *
 from drawTextStatus import *
+from drawGround import *
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 800
@@ -36,20 +37,6 @@ isDay = True
 def init():
   glClearColor(0.0, 0.0, 0.0, 1.0)
 
-def drawGround():
-  glTranslatef(wallWidth/3, wallHeight/2 , (wallDepth/2) )
-  glScalef(wallWidth, wallHeight, wallDepth)
-
-  glEnable(GL_COLOR_MATERIAL)
-  glColor3f(0.0, 0.5, 0.2)
-  glutSolidCube(1.0)
-
-  mat_specular = [0.0, 0.0, 0.0]
-  mat_shininess = [0.0]
-  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
-  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
-
-  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
 
 def drawSky():
   SLICES, STACKS = 15, 15
@@ -87,7 +74,7 @@ def display():
   gp2 = GoalPost('red')
   gp2.draw()
   drawGroundLines()
-  drawGround()
+  drawGround(wallWidth, wallHeight, wallDepth)
   drawSky()
 
   glutSwapBuffers()
@@ -98,8 +85,6 @@ def idleDisplay():
 
 def reshape(w, h):
   pass
-
-
 
 def gameStatus():
   print("PLACAR: ")

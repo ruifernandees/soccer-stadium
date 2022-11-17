@@ -9,6 +9,7 @@ from drawSoccerBall import *
 from drawTextStatus import *
 from drawGround import *
 from drawSky import *
+from drawMoon import *
 from grandstand import *
 
 WINDOW_WIDTH = 800
@@ -45,6 +46,7 @@ def resetSoccerBallPosition():
   global soccerBallZ 
   soccerBallX, soccerBallY, soccerBallZ = initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ
 
+
 def display():
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
   glEnable(GL_DEPTH_TEST)
@@ -65,6 +67,7 @@ def display():
   drawGrandStandTop()
   drawGround(wallWidth, wallHeight, wallDepth)
   drawSky(isDay)
+  drawMoon(isDay)
 
   glutSwapBuffers()
 

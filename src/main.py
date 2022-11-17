@@ -9,6 +9,7 @@ from drawSoccerBall import *
 from drawTextStatus import *
 from drawGround import *
 from drawSky import *
+from grandstand import *
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 800
@@ -59,7 +60,8 @@ def display():
   gp2 = GoalPost('red')
   gp2.draw()
   drawGroundLines()
-  drawGrandStand()
+  drawGrandStandLeft()
+  drawGrandStandRight()
   drawGround(wallWidth, wallHeight, wallDepth)
   drawSky()
 
@@ -101,6 +103,7 @@ def keyCallback(key, x, y):
   global isDay
   offset = 0.1
   rotationOffset = 20
+  maxCameraZ = 12
   if (key == b'a'):
     soccerBallX -= offset
     soccerBallRotationZ -= rotationOffset
@@ -114,9 +117,10 @@ def keyCallback(key, x, y):
     soccerBallZ += offset
     soccerBallRotationX += rotationOffset
   if (key == b'e'):
-    cameraZ -= offset
+      cameraZ -= offset
   if (key == b'q'):
-    cameraZ += offset
+    if (cameraZ + offset <= maxCameraZ):
+      cameraZ += offset
   if (key == b'n'):
     isDay = not isDay
   print(soccerBallX, soccerBallY, soccerBallZ)
@@ -135,24 +139,6 @@ def keyCallback(key, x, y):
     resetSoccerBallPosition()
     
   glutPostRedisplay()
-
-def drawGrandStand():
-  glPushMatrix()
-  glTranslatef(-5.0, 2.0, 2.0)
-  glScalef(0.5, 4.0, 16.0)
-
-  glEnable(GL_COLOR_MATERIAL)
-  glColor3f(0.4, 0.4, 0.4)
-  glutSolidCube(1.0)
-
-  mat_specular = [0.0, 0.0, 0.0]
-  mat_shininess = [0.0]
-  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
-  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
-
-  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
-  glPopMatrix()
-
 
 def main():
   print('PID: ',os.getpid())

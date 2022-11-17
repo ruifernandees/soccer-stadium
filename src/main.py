@@ -107,6 +107,7 @@ def keyCallback(key, x, y):
   global isDay
   offset = 0.1
   rotationOffset = 20
+  minCameraZ = -0.9
   maxCameraZ = 12
   if (key == b'a'):
     soccerBallX -= offset
@@ -121,6 +122,7 @@ def keyCallback(key, x, y):
     soccerBallZ += offset
     soccerBallRotationX += rotationOffset
   if (key == b'e'):
+    if(cameraZ - offset >= minCameraZ):
       cameraZ -= offset
   if (key == b'q'):
     if (cameraZ + offset <= maxCameraZ):

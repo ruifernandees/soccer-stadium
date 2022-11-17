@@ -2,11 +2,15 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
-def drawSky():
+def drawSky(isDay ):
   SLICES, STACKS = 15, 15
   glEnable(GL_COLOR_MATERIAL)
-  skyBlue = [0.53, 0.81, 0.92]
-  glColor3f(skyBlue[0], skyBlue[1], skyBlue[2])
+  skyColor = []
+  if (isDay):
+    skyColor = [0.53, 0.81, 0.92]
+  else:
+    skyColor = [0.1, 0.1, 0.1]
+  glColor3f(skyColor[0], skyColor[1], skyColor[2])
   glTranslatef(0, 0, 0)
   glutSolidSphere(50, SLICES, STACKS)
   mat_specular = [0.0, 0.0, 0.0]

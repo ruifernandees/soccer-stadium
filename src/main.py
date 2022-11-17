@@ -18,7 +18,7 @@ blueTeamCounter = 0
 redTeamCounter = 0
 
 fovY = 75.0
-cameraX, cameraY, cameraZ = 2.0, 3.7, 12.4
+cameraX, cameraY, cameraZ = 2.0, 3.7, 12
 wallX, wallY, wallZ = 0.0, 2.0, 0.0
 maxCameraX, maxCameraY, maxCameraZ = 48.0, 10000, 12.0
 minCameraX, minCameraY, minCameraZ = -48.0, 0.0, 1.0
@@ -62,8 +62,9 @@ def display():
   drawGroundLines()
   drawGrandStandLeft()
   drawGrandStandRight()
+  drawGrandStandTop()
   drawGround(wallWidth, wallHeight, wallDepth)
-  drawSky()
+  drawSky(isDay)
 
   glutSwapBuffers()
 

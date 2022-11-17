@@ -4,7 +4,7 @@ from OpenGL.GLUT import *
 
 def dayLight(cameraX, cameraY, cameraZ):
 	light_ambient = [0.7, 0.7, 0.7]
-	light_position = [cameraX, cameraY, cameraZ, 0.0]
+	light_position = [0.0, 10.0, 0.0, 0.0]
 	
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position)
@@ -13,11 +13,10 @@ def dayLight(cameraX, cameraY, cameraZ):
 	glEnable(GL_LIGHT0)
 
 def nightLight(cameraX, cameraY, cameraZ):
-	light_ambient = [0.0, 0.0, 0.0]
-	light_position = [cameraX, cameraY, cameraZ, 0.0]
+	light_ambient = [0.4, 0.4, 0.4]
 	
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position)
+	glLightfv(GL_LIGHT0, GL_POSITION, [0.0, 5.0, 0.0, 0.0])
 	
 	glEnable(GL_LIGHTING)
 	glEnable(GL_LIGHT0)

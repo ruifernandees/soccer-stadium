@@ -56,17 +56,7 @@ def display():
   configureLight()
 
   gluLookAt(cameraX, cameraY, cameraZ, centerX, centerY, centerZ, 0.0, 1.0, 0.0)
-  texture_0 = read_texture('./src/grass.jpg')
-  glEnable(GL_TEXTURE_2D)
-  glBegin(GL_QUADS)
 
-  glTexCoord2f(0.0, 20.0); glVertex3f(-0.75, 2.0, 0.0)
-  glTexCoord2f(20.0, 0.0); glVertex3f(-0.75, 2.0, 16.0)
-  glTexCoord2f(0.0, 0.0); glVertex3f(3.75, 2.0, 16.0)
-  glTexCoord2f(20.0, 20.0); glVertex3f(3.75, 2.0, 0.0)
-
-  glEnd()
-  glDisable(GL_TEXTURE_2D)
   drawTextStatus(blueTeamCounter, redTeamCounter)
   drawSoccerBall(soccerBallX, soccerBallY, soccerBallZ, soccerBallRotationX, soccerBallRotationY, soccerBallRotationZ)
   gp1 = GoalPost('blue')
@@ -77,7 +67,7 @@ def display():
   drawGrandStandLeft()
   drawGrandStandRight()
   drawGrandStandTop()
-  # drawGround(wallWidth, wallHeight, wallDepth)
+  drawGround()
   drawSky(isDay)
   drawMoon(isDay)
 

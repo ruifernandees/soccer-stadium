@@ -29,9 +29,9 @@ def drawGrandStandLeft():
     xOffset = 0.5 * i
     yOffset = 0.25 * i
     glTexCoord2f(0.0, 0.0); glVertex3f(-5.0 + xOffset, 5.0 - yOffset, 16.0)
-    glTexCoord2f(20.0, 0.0); glVertex3f(-5.0 + xOffset, 5.0 - yOffset, -4.4)
-    glTexCoord2f(20.0, 20.0); glVertex3f(-5.5 + xOffset, 5.0 - yOffset, -4.4)
-    glTexCoord2f(0.0, 20.0); glVertex3f(-5.5 + xOffset, 5.0 - yOffset, 16.0)
+    glTexCoord2f(100.0, 0.0); glVertex3f(-5.0 + xOffset, 5.0 - yOffset, -4.4)
+    glTexCoord2f(100.0, 100.0); glVertex3f(-5.5 + xOffset, 5.0 - yOffset, -4.4)
+    glTexCoord2f(0.0, 100.0); glVertex3f(-5.5 + xOffset, 5.0 - yOffset, 16.0)
 
   glEnd()
   glDisable(GL_TEXTURE_2D)
@@ -39,22 +39,34 @@ def drawGrandStandLeft():
 
 
 def drawGrandStandRight():
+  bricks = read_texture('./src/ground-gray.jpg')
+  glEnable(GL_TEXTURE_2D)
+  glBegin(GL_QUADS)
   for i in range(0, total):
     xOffset = 0.5 * i
     yOffset = 0.25 * i
-    glPushMatrix()
-    glTranslatef(8-xOffset, 2.0 - yOffset, 2.0)
-    glScalef(0.5, 4.0, 16.0)
-    glEnable(GL_COLOR_MATERIAL)
-    glColor3f(color[0], color[1], color[2])
-    glutSolidCube(1.0)
 
-    mat_specular = [0.0, 0.0, 0.0]
-    mat_shininess = [0.0]
-    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)
-    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess)
+    glTexCoord2f(0.0, 0.0); glVertex3f(8.5 - xOffset, 5.0 - yOffset, 16.0)
+    glTexCoord2f(100.0, 0.0); glVertex3f(8.5 - xOffset, 5.0 - yOffset, -4.4)
+    glTexCoord2f(100.0, 100.0); glVertex3f(8.5 - xOffset, 3.0 - yOffset, -4.4)
+    glTexCoord2f(0.0, 100.0); glVertex3f(8.5 - xOffset, 3.0 - yOffset, 16.0)
 
-    glPopMatrix()
+  glEnd()
+  glDisable(GL_TEXTURE_2D)
+
+  bricks = read_texture('./src/texture-green.jpg')
+  glEnable(GL_TEXTURE_2D)
+  glBegin(GL_QUADS)
+  for i in range(0, total):
+    xOffset = 0.5 * i
+    yOffset = 0.25 * i
+    glTexCoord2f(0.0, 0.0); glVertex3f(9.0 - xOffset, 5.0 - yOffset, 16.0)
+    glTexCoord2f(100.0, 0.0); glVertex3f(9.0 - xOffset, 5.0 - yOffset, -4.4)
+    glTexCoord2f(100.0, 100.0); glVertex3f(8.5 - xOffset, 5.0 - yOffset, -4.4)
+    glTexCoord2f(0.0, 100.0); glVertex3f(8.5 - xOffset, 5.0 - yOffset, 16.0)
+
+  glEnd()
+  glDisable(GL_TEXTURE_2D)
 
 def drawGrandStandTop():
   bricks = read_texture('./src/ground-gray.jpg')
@@ -66,9 +78,9 @@ def drawGrandStandTop():
     yOffset = 0.25 * i
 
     glTexCoord2f(0.0, 0.0); glVertex3f(-5.1, 5.0 -yOffset, -4.45 + zOffset)
-    glTexCoord2f(20.0, 0.0); glVertex3f(-5.1, 3.0 -yOffset, -4.45+ zOffset)
-    glTexCoord2f(20.0, 20.0); glVertex3f(5.0, 3.0 -yOffset, -4.45+ zOffset)
-    glTexCoord2f(0.0, 20.0); glVertex3f(5.0, 5.0 -yOffset, -4.45 + zOffset)
+    glTexCoord2f(100.0, 0.0); glVertex3f(-5.1, 3.0 -yOffset, -4.45+ zOffset)
+    glTexCoord2f(100.0, 100.0); glVertex3f(10.0, 3.0 -yOffset, -4.45+ zOffset)
+    glTexCoord2f(0.0, 100.0); glVertex3f(10.0, 5.0 -yOffset, -4.45 + zOffset)
 
   glEnd()
   glDisable(GL_TEXTURE_2D)
@@ -82,9 +94,9 @@ def drawGrandStandTop():
     yOffset = 0.25 * i
 
     glTexCoord2f(0.0, 0.0); glVertex3f(-5.1, 5.0 - yOffset, -5.5 + zOffset)
-    glTexCoord2f(20.0, 0.0); glVertex3f(-5.1, 5.0 - yOffset, -4.45 + zOffset)
-    glTexCoord2f(20.0, 20.0); glVertex3f(5.0, 5.0 - yOffset, -5.5 + zOffset)
-    glTexCoord2f(0.0, 20.0); glVertex3f(5.0, 5.0 - yOffset, -4.45 + zOffset)
+    glTexCoord2f(100.0, 0.0); glVertex3f(-5.1, 5.0 - yOffset, -4.45 + zOffset)
+    glTexCoord2f(100.0, 100.0); glVertex3f(10.0, 5.0 - yOffset, -5.5 + zOffset)
+    glTexCoord2f(0.0, 100.0); glVertex3f(10.0, 5.0 - yOffset, -4.45 + zOffset)
     
 
   glEnd()

@@ -20,7 +20,7 @@ blueTeamCounter = 0
 redTeamCounter = 0
 
 fovY = 75.0
-cameraX, cameraY, cameraZ = 2.0, 3.7, 12
+cameraX, cameraY, cameraZ = 2.0, 3.7,11
 wallX, wallY, wallZ = 0.0, 2.0, 0.0
 maxCameraX, maxCameraY, maxCameraZ = 48.0, 10000, 12.0
 minCameraX, minCameraY, minCameraZ = -48.0, 0.0, 1.0
@@ -65,7 +65,7 @@ def display():
   gp2.draw()
   drawGroundLines()
   drawGrandStandLeft()
-  drawGrandStandRight()
+  # drawGrandStandRight()
   drawGrandStandTop()
   drawGround()
   drawSky(isDay)

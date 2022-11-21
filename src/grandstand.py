@@ -16,8 +16,8 @@ def drawGrandStandLeft():
 
     glTexCoord2f(0.0, 0.0); glVertex3f(-3.5 + xOffset, 4.0 - yOffset, 16.0)
     glTexCoord2f(100.0, 0.0); glVertex3f(-3.5 + xOffset, 4.0 - yOffset, -4.4)
-    glTexCoord2f(100.0, 100.0); glVertex3f(-3.5 + xOffset, 0.0 - yOffset, -4.4)
-    glTexCoord2f(0.0, 100.0); glVertex3f(-3.5 + xOffset, 0.0 - yOffset, 16.0)
+    glTexCoord2f(100.0, 100.0); glVertex3f(-3.5 + xOffset, 3.0 - yOffset, -4.4)
+    glTexCoord2f(0.0, 100.0); glVertex3f(-3.5 + xOffset, 3.0 - yOffset, 16.0)
 
   glEnd()
   glDisable(GL_TEXTURE_2D)
@@ -48,8 +48,8 @@ def drawGrandStandRight():
 
     glTexCoord2f(0.0, 0.0); glVertex3f(7.0 - xOffset, 4.0 - yOffset, 16.0)
     glTexCoord2f(100.0, 0.0); glVertex3f(7.0 - xOffset, 4.0 - yOffset, -4.4)
-    glTexCoord2f(100.0, 100.0); glVertex3f(7.0 - xOffset, 0.0 - yOffset, -4.4)
-    glTexCoord2f(0.0, 100.0); glVertex3f(7.0 - xOffset, 0.0 - yOffset, 16.0)
+    glTexCoord2f(100.0, 100.0); glVertex3f(7.0 - xOffset, 3.0 - yOffset, -4.4)
+    glTexCoord2f(0.0, 100.0); glVertex3f(7.0 - xOffset, 3.0 - yOffset, 16.0)
 
   glEnd()
   glDisable(GL_TEXTURE_2D)

@@ -77,10 +77,10 @@ def drawGrandStandTop():
     zOffset = 0.5 * i
     yOffset = 0.25 * i
 
-    glTexCoord2f(0.0, 0.0); glVertex3f(10.0, 4.0 -yOffset, -3.0 + zOffset)
-    glTexCoord2f(100.0, 100.0); glVertex3f(10.0, 0.0 -yOffset, -3.0+ zOffset)
-    glTexCoord2f(100.0, 0.0); glVertex3f(-5.1, 0.0 -yOffset, -3.0+ zOffset)
-    glTexCoord2f(0.0, 100.0); glVertex3f(-5.1, 4.0 -yOffset, -3.0 + zOffset)
+    glTexCoord2f(0.0, 0.0); glVertex3f(10.0, 4.0 -yOffset, -2.95 + zOffset)
+    glTexCoord2f(100.0, 100.0); glVertex3f(10.0, 0.0 -yOffset, -2.95+ zOffset)
+    glTexCoord2f(100.0, 0.0); glVertex3f(-5.1, 0.0 -yOffset, -2.95+ zOffset)
+    glTexCoord2f(0.0, 100.0); glVertex3f(-5.1, 4.0 -yOffset, -2.95 + zOffset)
 
   glEnd()
   glDisable(GL_TEXTURE_2D)
@@ -93,10 +93,10 @@ def drawGrandStandTop():
     zOffset = 0.5 * i
     yOffset = 0.25 * i
 
-    glTexCoord2f(0.0, 0.0); glVertex3f(-5.1, 4.0 - yOffset, -3.0 + zOffset)
-    glTexCoord2f(0.0, 100.0); glVertex3f(-5.1, 4.0 - yOffset, -3.5 + zOffset)
-    glTexCoord2f(100.0, 100.0); glVertex3f(10.0, 4.0 - yOffset, -3.5 + zOffset)
-    glTexCoord2f(100.0, 0.0); glVertex3f(10.0, 4.0 - yOffset, -3.0 + zOffset)
+    glTexCoord2f(0.0, 0.0); glVertex3f(-5.1, 4.0 - yOffset, -2.95 + zOffset)
+    glTexCoord2f(0.0, 100.0); glVertex3f(-5.1, 4.0 - yOffset, -3.45 + zOffset)
+    glTexCoord2f(100.0, 100.0); glVertex3f(10.0, 4.0 - yOffset, -3.45 + zOffset)
+    glTexCoord2f(100.0, 0.0); glVertex3f(10.0, 4.0 - yOffset, -2.95 + zOffset)
     
 
   glEnd()

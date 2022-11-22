@@ -8,8 +8,8 @@ goalPostRotationY = 95.0
 goalPostRotationZ = -90.0
 goalPostRotationX = 0
 
-goalPostDepthFirst = 0.1
-goalPostDepthSecond = 10.1
+goalPostDepthFirst = 0.6
+goalPostDepthSecond = 10.6
 blueTeamColor = [1,1,1]
 redTeamColor = [1,1,1]
 

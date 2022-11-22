@@ -32,7 +32,7 @@ wallRotationX = 0
 wallWidth, wallHeight, wallDepth = 4.5, 2.0, 10.5
 
 centerX, centerY, centerZ = wallX, wallY, wallZ
-initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ = 1.6, 2.1, 5.20
+initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ = 1.6, 2.1, 5.75
 soccerBallRotationX, soccerBallRotationY, soccerBallRotationZ = 0,0,0
 soccerBallX, soccerBallY, soccerBallZ = initialSoccerBallX, initialSoccerBallY, initialSoccerBallZ
 updateSoccerBallX, updateSoccerBallY, updateSoccerBallZ = 1,1,1
@@ -113,10 +113,10 @@ def keyCallback(key, x, y):
   global blueTeamCounter 
   global redTeamCounter 
   global isDay
-  offset = 0.1
+  offset = 0.3
   rotationOffset = 20
   minCameraZ = -0.9
-  maxCameraZ = 12
+  maxCameraZ = 13
   if (key == b'a'):
     soccerBallX -= offset
     soccerBallRotationZ -= rotationOffset
@@ -140,7 +140,7 @@ def keyCallback(key, x, y):
   print(soccerBallX, soccerBallY, soccerBallZ)
   print(cameraX, cameraY, cameraZ)
 
-  blueTeamGoal = 0.20000000000000193
+  blueTeamGoal = 0.2
   redTeamGoal = 10.2
 
   if (soccerBallZ <= blueTeamGoal):

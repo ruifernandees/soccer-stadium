@@ -14,7 +14,6 @@ def CirclePlotPointsXZ(xc, zc, x, y, z):
 
 
 def BresenhamCircleDrawXZ(xc, zc, r, y):
-    glPushMatrix()
     offset = 0.001
     x = 0
     z = r
@@ -40,7 +39,6 @@ def BresenhamCircleDrawXZ(xc, zc, r, y):
 
     glEnd()
     glFlush()
-    glPopMatrix()
 
 def CirclePlotPoints(xc, yc, x, y, z):
     glVertex3f(xc + x, yc + y, z)

@@ -13,6 +13,15 @@ def drawGroundLines():
   central_circle_x, central_circle_y, central_circle_z, central_circle_r = 1.5 + xOffset, 2.0, 5.0 + zOffset, 0.3
   BresenhamCircleDrawXZ(central_circle_x, central_circle_z, central_circle_r, central_circle_y)
 
+  half_moon_blue_x, half_moon_blue_y, half_moon_blue_z, half_moon_blue_r = 1.5 + xOffset, 2.0, 1.4 + zOffset, 0.5
+#   glPushMatrix()
+#   glTranslatef(0, -0.4, 0)
+#   glRotatef(20, 0, 1, 0)
+#   glRotatef(20, 0, 0, 1)
+#   glRotatef(180, 1, 0, 0)
+  BresenhamCircleDrawXZ(half_moon_blue_x, half_moon_blue_z, half_moon_blue_r, half_moon_blue_y)
+#   glPopMatrix()
+
   #TOP
   line(0.0 + xOffset, 2.0, 3.0 + xOffset, 2.0, 0.0 + zOffset)
 

@@ -15,5 +15,10 @@ def drawGround():
   glTexCoord2f(0.0, 0.0); glVertex3f(3.75, 2.0, 16.0)
   glTexCoord2f(20.0, 20.0); glVertex3f(3.75, 2.0, 0.05)
 
+  glTexCoord2f(0.0, 20.0); glVertex3f(2.3, 2.02, 1.4)
+  glTexCoord2f(20.0, 0.0); glVertex3f(2.3, 2.02, 1.9)
+  glTexCoord2f(0.0, 0.0); glVertex3f(1.11, 2.02, 1.9)
+  glTexCoord2f(20.0, 20.0); glVertex3f(1.11, 2.02, 1.4)
+
   glEnd()
   glDisable(GL_TEXTURE_2D)

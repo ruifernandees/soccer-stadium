@@ -10,7 +10,7 @@ def drawGroundLines():
   xOffset = 0.1
   zOffset = 0.6
 
-  central_circle_x, central_circle_y, central_circle_z, central_circle_r = 1.5 + xOffset, 2.0, 5.0 + zOffset, 0.5
+  central_circle_x, central_circle_y, central_circle_z, central_circle_r = 1.5 + xOffset, 2.0, 5.0 + zOffset, 0.3
   BresenhamCircleDrawXZ(central_circle_x, central_circle_z, central_circle_r, central_circle_y)
 
   #TOP

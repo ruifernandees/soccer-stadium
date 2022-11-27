@@ -12,10 +12,10 @@ def drawSoccerBall(soccerBallX, soccerBallY, soccerBallZ, soccerBallRotationX, s
   glRotatef(soccerBallRotationY, 0.0, 1.0, 0.0)
   glRotatef(soccerBallRotationZ, 0.0, 0.0, 1.0)
   glRotatef(soccerBallRotationX, 1.0, 0.0, 0.0)
-  glutWireSphere(0.015, SLICES, STACKS)
-  glutSolidSphere(0.015, SLICES, STACKS)
+  glutWireSphere(0.022, SLICES, STACKS)
+  glutSolidSphere(0.022, SLICES, STACKS)
   glColor3f(0, 0, 0)
-  # glutSolidCube(0.035)
+  glutSolidCube(0.031)
   mat_specular = [0.0, 0.0, 0.0]
   mat_shininess = [0.0]
   glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular)

@@ -114,20 +114,21 @@ def keyCallback(key, x, y):
   global redTeamCounter 
   global isDay
   offset = 0.3
+  ball_offset = 0.1
   rotationOffset = 20
   minCameraZ = -0.9
   maxCameraZ = 13
   if (key == b'a'):
-    soccerBallX -= offset
+    soccerBallX -= ball_offset
     soccerBallRotationZ -= rotationOffset
   if (key == b'd'):
-    soccerBallX += offset
+    soccerBallX += ball_offset
     soccerBallRotationZ += rotationOffset
   if (key == b'w'):
-    soccerBallZ -= offset
+    soccerBallZ -= ball_offset
     soccerBallRotationX -= rotationOffset
   if (key == b's'):
-    soccerBallZ += offset
+    soccerBallZ += ball_offset
     soccerBallRotationX += rotationOffset
   if (key == b'e'):
     if(cameraZ - offset >= minCameraZ):
@@ -140,17 +141,31 @@ def keyCallback(key, x, y):
   print(soccerBallX, soccerBallY, soccerBallZ)
   print(cameraX, cameraY, cameraZ)
 
-  blueTeamGoal = 0.2
-  redTeamGoal = 10.2
+  blueTeamGoal = 0.68
+  redTeamGoal = 10.71
 
-  if (soccerBallZ <= blueTeamGoal):
+  goalPostLowerBound = 1.325
+  goalPostUpperBound = 2.0
+
+  if (soccerBallZ <= blueTeamGoal and soccerBallX > goalPostLowerBound and soccerBallX <= goalPostUpperBound):
     blueTeamCounter += 1
     gameStatus()
     resetSoccerBallPosition()
-  elif (soccerBallZ >= redTeamGoal):
+  elif (soccerBallZ >= redTeamGoal and soccerBallX > goalPostLowerBound and soccerBallX <= goalPostUpperBound):
     redTeamCounter += 1
     gameStatus()
     resetSoccerBallPosition()
+  elif (soccerBallZ <= blueTeamGoal and (soccerBallX <= goalPostLowerBound or soccerBallX > goalPostUpperBound)):
+    resetSoccerBallPosition()
+  elif (soccerBallZ >= redTeamGoal and (soccerBallX <= goalPostLowerBound or soccerBallX > goalPostUpperBound)):
+    resetSoccerBallPosition()
+
+  print (soccerBallX, soccerBallY, soccerBallZ)
+  if (soccerBallX <= 0.0):
+    resetSoccerBallPosition()
+  if (soccerBallX >= 3.0):
+    resetSoccerBallPosition()
+
     
   glutPostRedisplay()
 

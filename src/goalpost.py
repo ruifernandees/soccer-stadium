@@ -23,8 +23,8 @@ class GoalPost:
     self.drawGoalPostVerticalLeft()
     self.drawGoalPostVerticalRight()
     self.drawGoalPostHorizontal()
-    self.drawGoalPostFlagSupport()
-    self.drawGoalPostFlag()
+    # self.drawGoalPostFlagSupport()
+    # self.drawGoalPostFlag()
 
   def drawGoalPostVerticalLeft(self):
     glPushMatrix()

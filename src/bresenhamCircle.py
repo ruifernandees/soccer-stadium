@@ -2,23 +2,23 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
-def CirclePlotPointsXZ(x_centre, z_centre, x, y, z):
-    glVertex3f(x_centre + x, y, z_centre + z)
-    glVertex3f(x_centre - x, y, z_centre + z)
-    glVertex3f(x_centre + x, y, z_centre - z)
-    glVertex3f(x_centre - x, y, z_centre - z)
-    glVertex3f(x_centre + z, y, z_centre + x)
-    glVertex3f(x_centre - z, y, z_centre + x)
-    glVertex3f(x_centre + z, y, z_centre - x)
-    glVertex3f(x_centre - z, y, z_centre - x)
+def CirclePlotPointsXZ(xc, zc, x, y, z):
+    glVertex3f(xc + x, y, zc + z)
+    glVertex3f(xc - x, y, zc + z)
+    glVertex3f(xc + x, y, zc - z)
+    glVertex3f(xc - x, y, zc - z)
+    glVertex3f(xc + z, y, zc + x)
+    glVertex3f(xc - z, y, zc + x)
+    glVertex3f(xc + z, y, zc - x)
+    glVertex3f(xc - z, y, zc - x)
 
 
-def BresenhamCircleDrawXZ(x_centre, z_centre, r, y):
+def BresenhamCircleDrawXZ(xc, zc, r, y):
     glPushMatrix()
     offset = 0.001
     x = 0
     z = r
-    CirclePlotPointsXZ(x_centre, z_centre, x, y, z)
+    CirclePlotPointsXZ(xc, zc, x, y, z)
 
     D = 3 - 2 * r
 
@@ -35,31 +35,31 @@ def BresenhamCircleDrawXZ(x_centre, z_centre, r, y):
             z -= offset
             D = D + 4 * (x - y) + 2
 
-        CirclePlotPointsXZ(x_centre, z_centre, x, y, z)
+        CirclePlotPointsXZ(xc, zc, x, y, z)
         x += offset
 
     glEnd()
     glFlush()
     glPopMatrix()
 
-def CirclePlotPoints(x_centre, y_centre, x, y, z):
-    glVertex3f(x_centre + x, y_centre + y, z)
-    glVertex3f(x_centre - x, y_centre + y, z)
-    glVertex3f(x_centre + x, y_centre - y, z)
-    glVertex3f(x_centre - x, y_centre - y, z)
-    glVertex3f(x_centre + y, y_centre + x, z)
-    glVertex3f(x_centre - y, y_centre + x, z)
-    glVertex3f(x_centre + y, y_centre - x, z)
-    glVertex3f(x_centre - y, y_centre - x, z)
+def CirclePlotPoints(xc, yc, x, y, z):
+    glVertex3f(xc + x, yc + y, z)
+    glVertex3f(xc - x, yc + y, z)
+    glVertex3f(xc + x, yc - y, z)
+    glVertex3f(xc - x, yc - y, z)
+    glVertex3f(xc + y, yc + x, z)
+    glVertex3f(xc - y, yc + x, z)
+    glVertex3f(xc + y, yc - x, z)
+    glVertex3f(xc - y, yc - x, z)
 
 
-def BresenhamCircleDraw(x_centre, y_centre, r, z):
+def BresenhamCircleDraw(xc, yc, r, z):
     glPushMatrix()
     glRotate(90, 0,0,1)
     offset = 0.001
     x = 0
     y = r
-    CirclePlotPoints(x_centre, y_centre, x, y, z)
+    CirclePlotPoints(xc, yc, x, y, z)
 
     D = 3 - 2 * r
 
@@ -76,7 +76,7 @@ def BresenhamCircleDraw(x_centre, y_centre, r, z):
             y -= offset
             D = D + 4 * (x - y) + 2
 
-        CirclePlotPoints(x_centre, y_centre, x, y, z)
+        CirclePlotPoints(xc, yc, x, y, z)
         x += offset
 
     glEnd()

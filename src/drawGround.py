@@ -21,7 +21,7 @@ def drawGround(cameraZ):
     glTexCoord2f(20.0, 0.0); glVertex3f(2.3, 2.035, 1.905) 
     glTexCoord2f(0.0, 0.0); glVertex3f(1.11, 2.035, 1.905) 
     glTexCoord2f(20.0, 20.0); glVertex3f(1.11, 2.035, 1.4)
-  elif (cameraZ < 7.699 and cameraZ >= 3):
+  elif (cameraZ < 7.699 and cameraZ >= 3.11):
     # print ('SECOND')
     glTexCoord2f(0.0, 20.0); glVertex3f(2.3, 2.035, 1.4)
     glTexCoord2f(20.0, 0.0); glVertex3f(2.3, 2.035, 1.925) 

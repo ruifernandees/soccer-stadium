@@ -36,23 +36,21 @@ def drawGroundLines():
   line(0.1 + xOffset, 2.0, 3.0 + xOffset, 2.0, 5.001 + zOffset)
   line(0.1 + xOffset, 2.0, 3.0 + xOffset, 2.0, 5.002 + zOffset)
 
+  # ESCANTEIO 1 - AZUL
+  escanteio_x, escanteio_y, escanteio_z, escanteio_r = 0.065 + xOffset, 2.0, 0.065 + zOffset, 0.07
+  BresenhamCircleDrawXZ(escanteio_x, escanteio_z, escanteio_r, escanteio_y)
 
-#   BresenhamCircleDraw(x, y+0.4, z, r)
+  # ESCANTEIO 2 - AZUL
+  escanteio_x, escanteio_y, escanteio_z, escanteio_r = 2.94 + xOffset, 2.0, 0.055 + zOffset, 0.07
+  BresenhamCircleDrawXZ(escanteio_x, escanteio_z, escanteio_r, escanteio_y)
 
-  # # CIRCLE CENTER
-  # total = 10
-  # initialX = 1.50 + xOffset
-  # initialY = 2.0 + xOffset
-  # initialZ = 4.0 + zOffset
-  # line(1.50 + xOffset, 2.0, 1.6 + xOffset, 2.0, 4.0 + zOffset)
-  # for i in range(0, total):
-  #   currentXOffset = initialX * i 
-  #   currentYOffset = initialY * i 
-  #   currentZOffset = initialZ * i 
-  #   lineXtoZ(1.60 + currentXOffset, 4.0 + currentZOffset, 1.65 + currentXOffset, 4.05 + currentZOffset, 2.0)
-  # # lineXtoZ(1.65 + xOffset, 4.05 + zOffset, 1.66 + xOffset, 4.10 + zOffset, 2.0)
-  # # lineXtoZ(1.651 + xOffset, 4.20 + zOffset, 1.60 + xOffset, 4.25 + zOffset, 2.0)
-  # # lineXtoZ(1.651 + xOffset, 4.20 + zOffset, 1.60 + xOffset, 4.25 + zOffset, 2.0)
+  # ESCANTEIO 1 - VERMELHO 
+  escanteio_x, escanteio_y, escanteio_z, escanteio_r = 0.163 + xOffset, 2.0, 9.943 + zOffset, 0.07
+  BresenhamCircleDrawXZ(escanteio_x, escanteio_z, escanteio_r, escanteio_y)
+
+  # ESCANTEIO 2 - VERMELHO 
+  escanteio_x, escanteio_y, escanteio_z, escanteio_r = 3.037 + xOffset, 2.0, 9.939 + zOffset, 0.07
+  BresenhamCircleDrawXZ(escanteio_x, escanteio_z, escanteio_r, escanteio_y)
 
   # PEQUENA AREA - AZUL
   lineXtoZ(2.1 + xOffset, 0.0 + zOffset, 2.105 + xOffset, 0.7 + zOffset, 2.0)

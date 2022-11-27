@@ -10,6 +10,12 @@ def drawGroundLines():
   xOffset = 0.1
   zOffset = 0.6
 
+  goalpost_mini_circle_x, goalpost_mini_circle_y, goalpost_mini_circle_z, goalpost_mini_circle_r = 1.5 + xOffset, 2.036, 1.1 + zOffset, 0.009
+  BresenhamCircleDrawXZ(goalpost_mini_circle_x, goalpost_mini_circle_z, goalpost_mini_circle_r, goalpost_mini_circle_y)
+
+  # goalpost_mini_circle_x, goalpost_mini_circle_y, goalpost_mini_circle_z, goalpost_mini_circle_r = 1.5 + xOffset, 2.036, 1.1 + zOffset, 0.009
+  # BresenhamCircleDrawXZ(goalpost_mini_circle_x, goalpost_mini_circle_z, goalpost_mini_circle_r, goalpost_mini_circle_y)
+
   central_circle_x, central_circle_y, central_circle_z, central_circle_r = 1.5 + xOffset, 2.0, 5.0 + zOffset, 0.3
   BresenhamCircleDrawXZ(central_circle_x, central_circle_z, central_circle_r, central_circle_y)
 

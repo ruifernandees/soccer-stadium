@@ -22,10 +22,10 @@ def drawGround(cameraZ):
   else:
     zFinal = 1.90
 
-  glTexCoord2f(0.0, 20.0); glVertex3f(2.3, 2.035, 1.4)
-  glTexCoord2f(20.0, 0.0); glVertex3f(2.3, 2.035, zFinal) 
-  glTexCoord2f(0.0, 0.0); glVertex3f(1.11, 2.035, zFinal) 
-  glTexCoord2f(20.0, 20.0); glVertex3f(1.11, 2.035, 1.4)
+  glTexCoord2f(0.0, 20.0); glVertex3f(1.11, 2.035, 1.4)
+  glTexCoord2f(20.0, 0.0); glVertex3f(1.11, 2.035, zFinal) 
+  glTexCoord2f(0.0, 0.0); glVertex3f(2.3, 2.035, zFinal) 
+  glTexCoord2f(20.0, 20.0); glVertex3f(2.3, 2.035, 1.4)
 
   if (cameraZ >= 12.5):
     zFinal = 9.38

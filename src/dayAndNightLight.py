@@ -13,10 +13,9 @@ def dayLight(cameraX, cameraY, cameraZ):
 	glEnable(GL_LIGHT0)
 
 def nightLight(cameraX, cameraY, cameraZ):
-	light_ambient = [0.4, 0.4, 0.4]
+	light_ambient = [0.7, 0.7, 0.7]
 	
-	# glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)
-	# glLightfv(GL_LIGHT0, GL_POSITION, [-5.1, 4.5 , -5.0, 0.0])
+	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)
 	
 	glEnable(GL_LIGHTING)
 	glEnable(GL_LIGHT0)
